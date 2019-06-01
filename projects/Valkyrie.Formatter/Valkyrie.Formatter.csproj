@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.Formatter</RootNamespace>
+    <AssemblyName>Valkyrie.Formatter</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 语言代码格式化器</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+  </ItemGroup>
+
+</Project>

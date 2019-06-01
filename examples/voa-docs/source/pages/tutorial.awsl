@@ -1,0 +1,141 @@
+<widget>
+    <div class="tutorial-page">
+        <h1 class="page-title">交互式教程</h1>
+        <p class="page-desc">6 步掌握 VOA 全栈开发，从创建项目到部署上线。</p>
+
+        <div class="tutorial-steps">
+            <for each={steps}>
+                <div class="tutorial-step">
+                    <div class="tutorial-step-header">
+                        <span class="tutorial-step-num">Step {step.order}</span>
+                        <h2 class="tutorial-step-title">{step.title}</h2>
+                    </div>
+                    <p class="tutorial-step-desc">{step.description}</p>
+
+                    <div class="tutorial-code-block">
+                        <div class="tutorial-code-header">
+                            <span>代码</span>
+                            <button class="tutorial-copy-btn" on:click={() => copy_code(step.code)}>
+                                复制
+                            </button>
+                        </div>
+                        <pre class="tutorial-code">{step.code}</pre>
+                    </div>
+
+                    <div class="tutorial-output">
+                        <div class="tutorial-output-header">预期输出</div>
+                        <pre class="tutorial-output-code">{step.expected_output}</pre>
+                    </div>
+
+                    <details class="tutorial-hint">
+                        <summary>💡 提示</summary>
+                        <p>{step.hint}</p>
+                    </details>
+                </div>
+            </for>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let steps = get_tutorial_steps()
+
+    micro copy_code(code: string): void {
+        __voa_clipboard_write__(code)
+    }
+</script>
+
+<style>
+.page-title { margin: 0 0 8px; font-size: 28px; font-weight: 800; }
+.page-desc { margin: 0 0 32px; font-size: 15px; color: var(--voa-text-secondary); }
+.tutorial-steps { display: flex; flex-direction: column; gap: 32px; }
+.tutorial-step {
+    border: 1px solid var(--voa-border);
+    border-radius: var(--voa-radius-lg);
+    padding: 24px;
+}
+.tutorial-step-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.tutorial-step-num {
+    padding: 4px 10px;
+    border-radius: var(--voa-radius-full);
+    background: var(--voa-accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+}
+.tutorial-step-title { margin: 0; font-size: 20px; }
+.tutorial-step-desc { margin: 0 0 16px; color: var(--voa-text-secondary); font-size: 14px; }
+.tutorial-code-block {
+    border: 1px solid var(--voa-border);
+    border-radius: var(--voa-radius-md);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.tutorial-code-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 12px;
+    background: var(--voa-bg2);
+    border-bottom: 1px solid var(--voa-border);
+    font-size: 12px;
+    color: var(--voa-text-secondary);
+}
+.tutorial-copy-btn {
+    padding: 2px 8px;
+    border: 1px solid var(--voa-border);
+    border-radius: var(--voa-radius-sm);
+    background: transparent;
+    color: var(--voa-text-secondary);
+    font-size: 11px;
+    cursor: pointer;
+}
+.tutorial-copy-btn:hover { background: var(--voa-hover); }
+.tutorial-code {
+    margin: 0;
+    padding: 12px 16px;
+    font-family: 'Cascadia Code', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-x: auto;
+    background: var(--voa-bg2);
+}
+.tutorial-output {
+    border: 1px solid var(--voa-border);
+    border-radius: var(--voa-radius-md);
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+.tutorial-output-header {
+    padding: 6px 12px;
+    background: var(--voa-success-subtle);
+    border-bottom: 1px solid var(--voa-border);
+    font-size: 12px;
+    color: var(--voa-success);
+    font-weight: 600;
+}
+.tutorial-output-code {
+    margin: 0;
+    padding: 10px 16px;
+    font-family: monospace;
+    font-size: 12px;
+    background: var(--voa-bg2);
+}
+.tutorial-hint {
+    border: 1px solid var(--voa-warning-subtle);
+    border-radius: var(--voa-radius-md);
+    padding: 8px 12px;
+}
+.tutorial-hint summary {
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--voa-warning);
+    font-weight: 600;
+}
+.tutorial-hint p { margin: 8px 0 0; font-size: 13px; color: var(--voa-text-secondary); }
+</style>

@@ -1,0 +1,79 @@
+<widget>
+    <div class="blog-layout">
+        <header class="blog-header">
+            <div class="blog-header-inner">
+                <a class="blog-logo" href="/">VOA Blog</a>
+                <nav class="blog-nav">
+                    <Link href="/" exact={true}>首页</Link>
+                    <Link href="/posts">文章</Link>
+                    <Link href="/about">关于</Link>
+                </nav>
+            </div>
+        </header>
+
+        <main class="blog-main">
+            <slot />
+        </main>
+
+        <footer class="blog-footer">
+            <p>© 2027 VOA Blog — 使用 <strong>Asgard VOA</strong> 构建 · 纯 GGScript + AWSL</p>
+        </footer>
+    </div>
+</widget>
+
+<style>
+.blog-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.blog-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+.blog-header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.blog-logo {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--voa-text);
+    text-decoration: none;
+}
+.blog-nav {
+    display: flex;
+    gap: 20px;
+}
+.blog-nav a {
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color var(--voa-transition-fast);
+}
+.blog-nav a:hover { color: var(--voa-text); }
+.blog-nav a.active { color: var(--voa-accent); font-weight: 600; }
+.blog-main {
+    flex: 1;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    width: 100%;
+}
+.blog-footer {
+    text-align: center;
+    padding: 24px;
+    color: var(--voa-text-tertiary);
+    font-size: 13px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

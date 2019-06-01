@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageId>Valkyrie.Interpreter</PackageId>
+        <Version>0.0.0</Version>
+        <Authors>Valkyrie Team</Authors>
+        <Description>Valkyrie 语言运行时 - 基于 NyarVM 虚拟机与 Oak Valkyrie 前端</Description>
+        <PackageTags>valkyrie;runtime;nyar;vm;compiler</PackageTags>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler\Nyar.Assembler.csproj"/>
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Semantic\Nyar.Semantic.csproj"/>
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.VM\Nyar.VM.csproj"/>
+        <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj"/>
+        <ProjectReference Include="..\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj"/>
+    </ItemGroup>
+</Project>

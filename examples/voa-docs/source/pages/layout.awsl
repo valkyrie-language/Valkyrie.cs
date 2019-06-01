@@ -1,0 +1,130 @@
+<widget>
+    <div class="docs-layout">
+        <header class="docs-header">
+            <a class="docs-logo" href="/">VOA Docs</a>
+            <nav class="docs-header-nav">
+                <Link href="/docs/getting-started">文档</Link>
+                <Link href="/components">组件</Link>
+                <Link href="/tutorial">教程</Link>
+                <Link href="/api">API</Link>
+            </nav>
+        </header>
+
+        <div class="docs-body">
+            <aside class="docs-sidebar">
+                <for each={sections}>
+                    <div class="docs-sidebar-group">
+                        <div class="docs-sidebar-title">{section.icon} {section.title}</div>
+                        <for each={section.pages}>
+                            <Link href={"/docs/" + section.id + "/" + page.id}
+                                class="docs-sidebar-link {isActive('/docs/' + section.id + '/' + page.id) ? 'active' : ''}">
+                                {page.title}
+                            </Link>
+                        </for>
+                    </div>
+                </for>
+            </aside>
+
+            <main class="docs-content">
+                <slot />
+            </main>
+        </div>
+
+        <footer class="docs-footer">
+            <p>© 2027 Asgard VOA — 使用 VOA 自身构建 🐶</p>
+        </footer>
+    </div>
+</widget>
+
+<script>
+    let sections = get_doc_sections()
+
+    micro isActive(path: string): bool {
+        return __voa_get_current_path__() == path
+    }
+</script>
+
+<style>
+.docs-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.docs-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+.docs-logo {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--voa-text);
+    text-decoration: none;
+}
+.docs-header-nav {
+    display: flex;
+    gap: 20px;
+}
+.docs-header-nav a {
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+}
+.docs-header-nav a:hover { color: var(--voa-text); }
+.docs-header-nav a.active { color: var(--voa-accent); font-weight: 600; }
+.docs-body {
+    display: flex;
+    flex: 1;
+}
+.docs-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    padding: 20px 16px;
+    border-right: 1px solid var(--voa-border);
+    overflow-y: auto;
+    position: sticky;
+    top: 52px;
+    height: calc(100vh - 52px);
+}
+.docs-sidebar-group { margin-bottom: 20px; }
+.docs-sidebar-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--voa-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+.docs-sidebar-link {
+    display: block;
+    padding: 5px 10px;
+    border-radius: var(--voa-radius-sm);
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all var(--voa-transition-fast);
+}
+.docs-sidebar-link:hover { background: var(--voa-hover); color: var(--voa-text); }
+.docs-sidebar-link.active { background: var(--voa-accent-subtle); color: var(--voa-accent); font-weight: 600; }
+.docs-content {
+    flex: 1;
+    padding: 32px 40px;
+    max-width: 800px;
+    min-width: 0;
+}
+.docs-footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--voa-text-tertiary);
+    font-size: 12px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

@@ -1,0 +1,10 @@
+{
+    "name": "voa-hmr-showcase",
+    "version": "0.1.0",
+    "description": "VOA HMR + DevTools 交互展示 — 开发体验达到主流框架水平",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-devtools": ">=0.1.0"
+    }
+}

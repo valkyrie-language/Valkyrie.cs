@@ -1,0 +1,108 @@
+<widget>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <h2 class="admin-logo">VOA Admin</h2>
+            </div>
+            <nav class="admin-nav">
+                <Link href="/dashboard" class="admin-nav-item">📊 仪表盘</Link>
+                <Link href="/users" class="admin-nav-item">👥 用户管理</Link>
+                <Link href="/settings" class="admin-nav-item">⚙️ 设置</Link>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <div class="admin-user-info">
+                    <Avatar name="A" size="small" />
+                    <span>admin</span>
+                </div>
+                <Button variant="ghost" size="small" label="退出" on:click={handleLogout} />
+            </div>
+        </aside>
+
+        <div class="admin-main-area">
+            <header class="admin-topbar">
+                <h1 class="admin-page-title">{pageTitle}</h1>
+                <div class="admin-topbar-right">
+                    <Badge variant="success" dot={true} />
+                    <span style="font-size:13px; color: var(--voa-text-secondary)">在线</span>
+                </div>
+            </header>
+            <main class="admin-content">
+                <slot />
+            </main>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let pageTitle: string = "仪表盘"
+
+    micro handleLogout() {
+        logout()
+        __voa_navigate__("/login", true)
+    }
+</script>
+
+<style>
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.admin-sidebar {
+    width: 220px;
+    background: var(--voa-card);
+    border-right: 1px solid var(--voa-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+.admin-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--voa-border);
+}
+.admin-logo { margin: 0; font-size: 18px; font-weight: 800; }
+.admin-nav {
+    flex: 1;
+    padding: 12px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.admin-nav-item {
+    display: block;
+    padding: 10px 14px;
+    border-radius: var(--voa-radius-md);
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all var(--voa-transition-fast);
+}
+.admin-nav-item:hover { background: var(--voa-hover); color: var(--voa-text); }
+.admin-nav-item.active { background: var(--voa-accent-subtle); color: var(--voa-accent); }
+.admin-sidebar-footer {
+    padding: 12px 16px;
+    border-top: 1px solid var(--voa-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.admin-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+}
+.admin-main-area { flex: 1; display: flex; flex-direction: column; }
+.admin-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--voa-border);
+    background: var(--voa-card);
+}
+.admin-page-title { margin: 0; font-size: 20px; font-weight: 700; }
+.admin-topbar-right { display: flex; align-items: center; gap: 8px; }
+.admin-content { flex: 1; padding: 24px; }
+</style>

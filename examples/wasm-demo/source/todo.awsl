@@ -1,0 +1,62 @@
+<widget>
+    <div class="voa-card">
+        <h2>待办事项（剩余 {remaining} / 共 {total}）</h2>
+        <div class="voa-row">
+            <input class="voa-input" style="flex: 1" placeholder="添加新任务..." v-model={new_item} />
+            <button class="voa-btn primary" on:click={add_item}>添加</button>
+        </div>
+        <ul class="voa-todo-list" style="margin-top: 12px">
+            <loop todo in {todos}>
+                <li class="voa-todo-item">
+                    <input type="checkbox" checked={todo.done} on:change={toggle} />
+                    <span class="voa-todo-text">{todo.text}</span>
+                    <button class="voa-todo-del" on:click={remove}>×</button>
+                </li>
+            </loop>
+        </ul>
+    </div>
+</widget>
+
+<script>
+    let mut new_item: string = ""
+    let mut todos: list = []
+
+    micro remaining() {
+        return todos.filter(function(t) { return !t.done }).length
+    }
+
+    micro total() {
+        return todos.length
+    }
+
+    micro add_item() {
+        let text = new_item.trim()
+        if (!text) return
+        todos = [...todos, { text: text, done: false, id: Date.now() }]
+        new_item = ""
+    }
+
+    micro toggle(e) {
+        let idx = e.target.closest('li').__voa_idx
+        todos = todos.map(function(t, i) { return i === idx ? { text: t.text, done: !t.done, id: t.id } : t })
+    }
+
+    micro remove(e) {
+        let idx = e.target.closest('li').__voa_idx
+        todos = todos.filter(function(t, i) { return i !== idx })
+    }
+</script>
+
+<style>
+.voa-card { background: var(--voa-card); border: 1px solid var(--voa-border); border-radius: 8px; padding: 20px }
+.voa-card h2 { font-size: 14px; color: var(--voa-accent); margin-bottom: 12px }
+.voa-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap }
+.voa-btn { padding: 8px 16px; border: 1px solid #333; border-radius: 6px; background: var(--voa-bg2); color: var(--voa-text); cursor: pointer; font-size: 13px; transition: all 0.15s }
+.voa-btn.primary { background: var(--voa-accent); border-color: var(--voa-accent); color: #fff }
+.voa-input { padding: 8px 12px; border: 1px solid #333; border-radius: 6px; background: var(--voa-bg2); color: var(--voa-text); font-size: 13px; outline: none; transition: border-color 0.15s }
+.voa-input:focus { border-color: var(--voa-accent) }
+.voa-todo-list { list-style: none; display: flex; flex-direction: column; gap: 8px }
+.voa-todo-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 6px; background: var(--voa-bg2) }
+.voa-todo-text { flex: 1 }
+.voa-todo-del { background: none; border: none; color: var(--voa-danger); cursor: pointer; font-size: 16px; padding: 0 4px }
+</style>

@@ -1,0 +1,18 @@
+# IDE
+.vscode/
+.idea/
+.trae/
+.vs/
+*.iml
+
+# C#
+BenchmarkDotNet.Artifacts/
+TestResults/
+obj/
+bin/
+*.trx
+
+
+# V
+.legion/
+dist/

@@ -1,0 +1,70 @@
+<widget>
+    <div class="login-page">
+        <div class="login-card">
+            <h1 class="login-title">VOA Admin</h1>
+            <p class="login-subtitle">后台管理系统登录</p>
+
+            <div class="login-form">
+                <Input label="用户名" placeholder="请输入用户名" value={username} on:input={(e) => { username = e.value }} />
+                <Input label="密码" type="password" placeholder="请输入密码" value={password} on:input={(e) => { password = e.value }} />
+
+                <if condition={error}>
+                    <p class="login-error">{error}</p>
+                <else/>
+                </if>
+
+                <Button variant="primary" block={true} label={loading ? "登录中..." : "登录"} loading={loading} on:click={handleLogin} />
+
+                <p class="login-hint">演示账号：admin / admin</p>
+            </div>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let username: string = ""
+    let password: string = ""
+    let error: string = ""
+    let loading: bool = false
+
+    micro handleLogin() {
+        if username == "" || password == "" {
+            error = "请输入用户名和密码"
+            return
+        }
+
+        loading = true
+        error = ""
+
+        let result = login(username, password)
+        if result.authenticated {
+            __voa_navigate__("/dashboard", true)
+        } else {
+            error = "用户名或密码错误"
+            loading = false
+        }
+    }
+</script>
+
+<style>
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--voa-bg);
+}
+.login-card {
+    width: 380px;
+    background: var(--voa-card);
+    border: 1px solid var(--voa-border);
+    border-radius: var(--voa-radius-xl);
+    padding: 32px;
+    box-shadow: var(--voa-shadow-md);
+}
+.login-title { margin: 0 0 4px; font-size: 24px; font-weight: 800; text-align: center; }
+.login-subtitle { margin: 0 0 24px; font-size: 14px; color: var(--voa-text-secondary); text-align: center; }
+.login-form { display: flex; flex-direction: column; gap: 16px; }
+.login-error { margin: 0; font-size: 13px; color: var(--voa-error); }
+.login-hint { margin: 0; font-size: 12px; color: var(--voa-text-tertiary); text-align: center; }
+</style>

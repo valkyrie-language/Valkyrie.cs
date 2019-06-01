@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>瓦尓哈拉核心库 — 名字标准化、manifest、授权链、审计日志等共享类型</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Valhalla</RootNamespace>
+    <AssemblyName>Valhalla</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+  </ItemGroup>
+
+</Project>

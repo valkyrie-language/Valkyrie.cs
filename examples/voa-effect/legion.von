@@ -1,0 +1,10 @@
+legion {
+    name: "voa-effect",
+    version: "0.1.0.0",
+    description: "VOA 效果系统 - 前后端解耦层",
+    license: "MIT",
+    dependencies: {
+        "voa-core": "^0.1.0.0"
+    },
+    devDependencies: {}
+}

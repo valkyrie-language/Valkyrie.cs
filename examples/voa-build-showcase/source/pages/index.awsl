@@ -1,0 +1,105 @@
+<widget>
+    <div class="build-home">
+        <Card variant="elevated" style="margin-bottom: 24px">
+            <h2 style="margin:0 0 12px">构建优化三大引擎</h2>
+            <p style="margin:0; color: var(--voa-text-secondary); line-height: 1.8">
+                VOA 构建管线在 <code>voa build</code> 时自动执行三项优化，目标 Lighthouse 性能 ≥ 90 分。
+            </p>
+        </Card>
+
+        <div class="build-grid">
+            <Card variant="bordered" title="✂️ 代码分割">
+                <ul class="build-list">
+                    <li><strong>Route-based</strong> — 每个页面自动生成独立 chunk</li>
+                    <li><strong>Component-based</strong> — 动态 import 按需加载</li>
+                    <li><strong>Common chunk</strong> — 共享模块自动提取</li>
+                    <li><strong>Cache Groups</strong> — voa-core / vendor 分组</li>
+                    <li>过小 chunk 自动合并（< 10KB）</li>
+                    <li>过大 chunk 自动拆分（> 244KB）</li>
+                    <li><code>dynamic_import("module")</code> 懒加载 API</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="🖼️ 图片优化">
+                <ul class="build-list">
+                    <li><Badge variant="success">AVIF</Badge> 优先（体积最小）</li>
+                    <li><Badge variant="primary">WebP</Badge> 回退（兼容性好）</li>
+                    <li><Badge variant="default">Original</Badge> 最终回退</li>
+                    <li>自动生成 <code>srcset</code> + <code>sizes</code></li>
+                    <li>BlurHash 占位符（消除 CLS）</li>
+                    <li>主色调占位符（更快）</li>
+                    <li>懒加载 + 异步解码</li>
+                    <li>8 档响应式尺寸（640~3840px）</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="🔤 字体优化">
+                <ul class="build-list">
+                    <li><code>font-display: swap</code> 消除 FOIT</li>
+                    <li>关键字体 CSS 内联（< 20KB）</li>
+                    <li>非关键字体延迟加载</li>
+                    <li><code>&lt;link rel="preload"&gt;</code> 预加载</li>
+                    <li>size-adjust / ascent-override 消除 CLS</li>
+                    <li>回退字体度量对齐</li>
+                    <li>CSS 变量统一管理</li>
+                    <li>子集化（latin / latin-ext）</li>
+                </ul>
+            </Card>
+        </div>
+
+        <Card variant="filled" style="margin-top: 24px">
+            <h3 style="margin:0 0 12px">📊 优化效果估算</h3>
+            <div class="perf-grid">
+                <div class="perf-item">
+                    <span class="perf-label">FCP</span>
+                    <span class="perf-value">~1.2s → ~0.6s</span>
+                    <Progress percent={50} variant="success" size="small" />
+                </div>
+                <div class="perf-item">
+                    <span class="perf-label">LCP</span>
+                    <span class="perf-value">~2.5s → ~1.0s</span>
+                    <Progress percent={60} variant="primary" size="small" />
+                </div>
+                <div class="perf-item">
+                    <span class="perf-label">CLS</span>
+                    <span class="perf-value">~0.15 → ~0.02</span>
+                    <Progress percent={90} variant="success" size="small" />
+                </div>
+                <div class="perf-item">
+                    <span class="perf-label">TTI</span>
+                    <span class="perf-value">~3.0s → ~1.5s</span>
+                    <Progress percent={50} variant="warning" size="small" />
+                </div>
+            </div>
+        </Card>
+    </div>
+</widget>
+
+<style>
+.build-home { padding: 10px 0; }
+.build-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+.build-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+    line-height: 2;
+}
+.build-list code { padding: 1px 4px; border-radius: 3px; background: var(--voa-hover); color: var(--voa-accent); font-size: 12px; }
+.perf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+}
+.perf-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.perf-label { font-size: 12px; color: var(--voa-text-tertiary); font-weight: 600; }
+.perf-value { font-size: 14px; font-weight: 600; color: var(--voa-accent); }
+</style>

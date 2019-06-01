@@ -1,0 +1,25 @@
+{
+    "name": "std.adaptor.wasip2",
+    "description": "WASI Preview 2 (Component Model) 平台 SDK — IO 流 / 文件系统 / 套接字 / HTTP",
+    "type": "sdk",
+    "sdk": {
+        "target": "wasip2",
+        "arch": "wasm32",
+        "abi": "wasm32-wasi-preview2"
+    },
+    "exports": {
+        "functions": [
+            "source/io.v",
+            "source/fs.v",
+            "source/cli.v",
+            "source/clock.v",
+            "source/random.v",
+            "source/poll.v",
+            "source/sock.v",
+            "source/http.v"
+        ]
+    },
+    "dependencies": {
+        "core": "workspace"
+    }
+}

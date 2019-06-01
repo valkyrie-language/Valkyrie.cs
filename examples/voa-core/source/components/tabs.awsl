@@ -1,0 +1,75 @@
+<widget>
+    <div class="voa-tabs">
+        <div class="voa-tab-bar">
+            <loop tab in {tabs}>
+                <button
+                    class="voa-tab {activeTab === tab.key ? 'active' : ''}"
+                    on:click={() => setActive(tab.key)}
+                    disabled={tab.disabled}
+                >
+                    <if condition={tab.icon}>
+                        <span class="voa-tab-icon">{tab.icon}</span>
+                    <else/>
+                    </if>
+                    {tab.label}
+                </button>
+            </loop>
+        </div>
+        <div class="voa-tab-content">
+            <slot name={activeTab} />
+        </div>
+    </div>
+</widget>
+
+<script>
+    let tabs: list = []
+    let activeTab: string = ""
+
+    micro setActive(key) {
+        activeTab = key
+        emit("change", { key: key })
+    }
+</script>
+
+<style>
+.voa-tabs {
+    display: flex;
+    flex-direction: column;
+}
+.voa-tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--voa-border, #21262d);
+    gap: 0;
+}
+.voa-tab {
+    padding: 10px 16px;
+    border: none;
+    background: none;
+    color: var(--voa-text2, #8b949e);
+    font-size: 14px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.voa-tab:hover {
+    color: var(--voa-text, #e6edf3);
+    background: var(--voa-hover, #161b22);
+}
+.voa-tab.active {
+    color: var(--voa-accent, #58a6ff);
+    border-bottom-color: var(--voa-accent, #58a6ff);
+}
+.voa-tab[disabled] {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.voa-tab-icon {
+    font-size: 16px;
+}
+.voa-tab-content {
+    padding: 16px 0;
+}
+</style>

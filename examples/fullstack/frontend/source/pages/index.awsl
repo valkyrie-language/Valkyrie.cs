@@ -1,0 +1,47 @@
+<widget namespace="frontend.pages" name="index">
+    <vbox class="container">
+        <text class="title">{title}</text>
+        <text class="subtitle">VOA Fullstack Demo</text>
+        <button on:click={load_users} style="bg-blue-500 text-white px-4 py-2 rounded">加载用户</button>
+        <for each="user" in="users">
+            <vbox class="card">
+                <text class="name">{user.name}</text>
+                <text class="email">{user.email}</text>
+            </vbox>
+        </for>
+    </vbox>
+</widget>
+
+<script namespace="frontend.pages">
+    using shared.models
+    using backend.services.user_service
+
+    let title: string = "Hello, Asgard!"
+    let users: list = []
+
+    micro load_users() {
+        users = get_users()
+    }
+</script>
+
+<style>
+.container {
+    padding: 32px;
+}
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+.card {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
+.email {
+    color: var(--text);
+}
+</style>

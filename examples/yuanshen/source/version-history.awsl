@@ -1,0 +1,130 @@
+<widget>
+    <div class="ys-version-panel">
+        <div class="ys-version-header">
+            <h3>版本历史</h3>
+            <span class="ys-version-count">{versions.length} 个版本</span>
+        </div>
+        <div class="ys-version-list">
+            {#each versions as v}
+                <div class="ys-version-item {v.current ? 'current' : ''}" on:click={checkoutVersion(v.id)}>
+                    <div class="ys-version-left">
+                        <span class="ys-version-hash">{v.hash}</span>
+                        <span class="ys-version-msg">{v.message}</span>
+                    </div>
+                    <div class="ys-version-right">
+                        <span class="ys-version-author">{v.author}</span>
+                        <span class="ys-version-date">{v.date}</span>
+                    </div>
+                </div>
+            {/each}
+        </div>
+    </div>
+</widget>
+
+<script>
+    let versions: Array = __voa_state("commits")
+
+    macro checkoutVersion(id: string) { __voa_call("checkout_version", id) }
+</script>
+
+<style>
+.ys-version-panel {
+    width: 320px;
+    min-width: 320px;
+    border-left: 1px solid var(--ys-border);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.ys-version-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid var(--ys-border);
+}
+
+.ys-version-header h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ys-text2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.ys-version-count {
+    font-size: 11px;
+    color: var(--ys-text3);
+    background: var(--ys-hover);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.ys-version-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.ys-version-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+    gap: 12px;
+}
+
+.ys-version-item:hover {
+    background: var(--ys-hover);
+}
+
+.ys-version-item.current {
+    background: var(--ys-active);
+    border-left: 3px solid var(--ys-accent);
+}
+
+.ys-version-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+}
+
+.ys-version-hash {
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--ys-accent);
+}
+
+.ys-version-msg {
+    font-size: 12px;
+    color: var(--ys-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ys-version-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.ys-version-author {
+    font-size: 11px;
+    color: var(--ys-text2);
+}
+
+.ys-version-date {
+    font-size: 11px;
+    color: var(--ys-text3);
+}
+</style>

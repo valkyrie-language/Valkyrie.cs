@@ -1,0 +1,29 @@
+{
+    version: "1",
+    name: "valkyrie-workspace",
+    members: [
+        "examples/core",
+        "examples/std",
+        "examples/std.adaptor.dotnet",
+        "examples/std.adaptor.jvm",
+        "examples/std.adaptor.linux",
+        "examples/std.adaptor.macos",
+        "examples/std.adaptor.nyar",
+        "examples/std.adaptor.wasip1",
+        "examples/std.adaptor.wasip2",
+        "examples/std.adaptor.wasm",
+        "examples/std.adaptor.windows"
+    ],
+    dependencies: {
+        "core": "0.0.0.0"
+    },
+    scripts: {
+        build: "legion run build --all",
+        test: "legion run test --all"
+    },
+    workspace: {
+        author: "Valkyrie Team",
+        license: "MIT",
+        version: "0.1.0"
+    }
+}

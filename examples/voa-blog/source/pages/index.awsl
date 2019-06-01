@@ -1,0 +1,104 @@
+<widget>
+    <div class="blog-home">
+        <section class="blog-hero">
+            <h1 class="blog-hero-title">VOA Blog</h1>
+            <p class="blog-hero-subtitle">使用纯 GGScript + AWSL 构建的全栈博客</p>
+        </section>
+
+        <section class="blog-recent">
+            <h2 class="blog-section-title">最新文章</h2>
+            <for each={posts}>
+                <article class="blog-card">
+                    <div class="blog-card-meta">
+                        <span class="blog-card-date">{post.date}</span>
+                        <span class="blog-card-time">{post.reading_time} 分钟阅读</span>
+                    </div>
+                    <h3 class="blog-card-title">
+                        <Link href={"/posts/" + post.slug}>{post.title}</Link>
+                    </h3>
+                    <p class="blog-card-excerpt">{post.excerpt}</p>
+                    <div class="blog-card-tags">
+                        <for each={post.tags}>
+                            <Badge variant="primary" size="small">{tag}</Badge>
+                        </for>
+                    </div>
+                </article>
+            </for>
+        </section>
+
+        <section class="blog-tags-section">
+            <h2 class="blog-section-title">标签</h2>
+            <div class="blog-tags-list">
+                <for each={allTags}>
+                    <Badge variant="default" size="large">{tag}</Badge>
+                </for>
+            </div>
+        </section>
+    </div>
+</widget>
+
+<script>
+    let posts = get_all_posts()
+    let allTags = get_all_tags()
+</script>
+
+<style>
+.blog-hero {
+    text-align: center;
+    padding: 40px 0 48px;
+}
+.blog-hero-title {
+    margin: 0;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+.blog-hero-subtitle {
+    margin: 8px 0 0;
+    font-size: 18px;
+    color: var(--voa-text-secondary);
+}
+.blog-section-title {
+    margin: 0 0 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+.blog-card {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--voa-border);
+}
+.blog-card:last-child { border-bottom: none; }
+.blog-card-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    color: var(--voa-text-tertiary);
+    margin-bottom: 8px;
+}
+.blog-card-title {
+    margin: 0 0 8px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.blog-card-title a {
+    color: var(--voa-text);
+    text-decoration: none;
+}
+.blog-card-title a:hover { color: var(--voa-accent); }
+.blog-card-excerpt {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: var(--voa-text-secondary);
+    line-height: 1.7;
+}
+.blog-card-tags {
+    display: flex;
+    gap: 6px;
+}
+.blog-tags-section { margin-top: 48px; }
+.blog-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+</style>

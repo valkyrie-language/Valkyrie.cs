@@ -1,0 +1,11 @@
+{
+    "name": "voa-dashboard",
+    "version": "0.1.0",
+    "description": "VOA 实时仪表盘 — WebSocket + 状态管理 + 图表",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-router": ">=0.2.0",
+        "voa-effect": ">=0.2.0"
+    }
+}

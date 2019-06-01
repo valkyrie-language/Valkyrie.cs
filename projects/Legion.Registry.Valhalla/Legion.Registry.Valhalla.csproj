@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>瓦尓哈拉注册表适配器 — 实现 Legion 的 IRegistry 接口，将瓦尓哈拉集成为 Legion 的注册源</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Valkyrie.PackageManager</RootNamespace>
+    <AssemblyName>Legion.Registry.Valhalla</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageId>Legion.Registry.Valhalla</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Legion.Registry\Legion.Registry.csproj" />
+    <ProjectReference Include="..\Valhalla.Client\Valhalla.Client.csproj" />
+  </ItemGroup>
+
+</Project>

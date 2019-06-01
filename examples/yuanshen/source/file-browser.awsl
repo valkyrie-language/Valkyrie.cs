@@ -1,0 +1,164 @@
+<widget>
+    <div class="ys-file-browser">
+        <div class="ys-file-header">
+            <div class="ys-breadcrumb">
+                {#each pathSegments as seg, i}
+                    <span class="ys-crumb" on:click={navigateTo(i)}>{seg}</span>
+                    {#if i < pathSegments.length - 1}
+                        <span class="ys-crumb-sep">/</span>
+                    {/if}
+                {/each}
+            </div>
+            <div class="ys-file-actions">
+                <button class="ys-btn ys-btn-sm" on:click={uploadFile}>上传</button>
+                <button class="ys-btn ys-btn-sm" on:click={newFolder}>新建文件夹</button>
+            </div>
+        </div>
+        <div class="ys-file-list">
+            <div class="ys-file-list-header">
+                <span class="ys-col-name">名称</span>
+                <span class="ys-col-size">大小</span>
+                <span class="ys-col-date">修改时间</span>
+            </div>
+            {#each files as file}
+                <div class="ys-file-row" on:click={openFile(file)}>
+                    <span class="ys-col-name">
+                        <span class="ys-file-icon">{file.isDir ? '📁' : '📄'}</span>
+                        <span class="ys-file-name">{file.name}</span>
+                    </span>
+                    <span class="ys-col-size">{file.isDir ? '--' : file.size}</span>
+                    <span class="ys-col-date">{file.modifiedAt}</span>
+                </div>
+            {/each}
+        </div>
+    </div>
+</widget>
+
+<script>
+    let pathSegments: Array = __voa_state("path_segments")
+    let files: Array = __voa_state("files")
+
+    macro navigateTo(i: i32) { __voa_call("navigate_to", i) }
+    macro openFile(file: FileEntry) { __voa_call("open_file", file) }
+    macro uploadFile() { __voa_call("upload_file") }
+    macro newFolder() { __voa_call("new_folder") }
+</script>
+
+<style>
+.ys-file-browser {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.ys-file-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--ys-border);
+    gap: 12px;
+}
+
+.ys-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    min-width: 0;
+}
+
+.ys-crumb {
+    color: var(--ys-text2);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.ys-crumb:hover {
+    color: var(--ys-accent);
+}
+
+.ys-crumb:last-child {
+    color: var(--ys-text);
+    font-weight: 500;
+}
+
+.ys-crumb-sep {
+    color: var(--ys-text3);
+}
+
+.ys-file-actions {
+    display: flex;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.ys-file-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.ys-file-list-header {
+    display: flex;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ys-text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--ys-border);
+    position: sticky;
+    top: 0;
+    background: var(--ys-bg);
+}
+
+.ys-file-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background 0.1s;
+    border-bottom: 1px solid transparent;
+}
+
+.ys-file-row:hover {
+    background: var(--ys-hover);
+}
+
+.ys-col-name {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.ys-col-size {
+    width: 80px;
+    text-align: right;
+    color: var(--ys-text3);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.ys-col-date {
+    width: 100px;
+    text-align: right;
+    color: var(--ys-text3);
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.ys-file-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.ys-file-name {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>

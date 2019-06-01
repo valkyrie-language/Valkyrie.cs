@@ -1,0 +1,13 @@
+{
+    "name": "voa-blog",
+    "version": "0.1.0",
+    "description": "VOA 全栈博客 — 路由 + SSG + 数据获取 + 评论系统",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-router": ">=0.2.0",
+        "voa-effect": ">=0.2.0",
+        "voa-fetch": ">=0.1.0",
+        "voa-seo": ">=0.1.0"
+    }
+}

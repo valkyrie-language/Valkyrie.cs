@@ -1,0 +1,67 @@
+name: Legion CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+env:
+  DOTNET_VERSION: '9.0.x'
+
+jobs:
+  install-and-audit:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: legion install --frozen-lockfile --no-interactive
+
+      - name: Security audit
+        run: legion audit --severity moderate
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install-and-audit
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: legion install --frozen-lockfile --no-interactive
+
+      - name: Build
+        run: legion build
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: legion install --frozen-lockfile --no-interactive
+
+      - name: Publish
+        env:
+          LEGION_AUTH_TOKEN: ${{ secrets.LEGION_AUTH_TOKEN }}
+        run: legion publish --no-interactive --bump patch

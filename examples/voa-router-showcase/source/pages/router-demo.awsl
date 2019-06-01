@@ -1,0 +1,44 @@
+<widget>
+    <div class="router-demo-page">
+        <h2 class="demo-title">🗺️ 路由演示</h2>
+
+        <Card variant="bordered" style="margin-bottom: 24px">
+            <h3 style="margin:0 0 12px">编程式导航</h3>
+            <p style="margin:0 0 12px; color: var(--voa-text-secondary); font-size: 14px">
+                当前路径：<code style="color: var(--voa-accent)">{navState.path}</code>
+            </p>
+            <div class="demo-row">
+                <Button variant="primary" label="push → /counter" on:click={() => navState.push("/counter")} />
+                <Button variant="outline" label="replace → /counter" on:click={() => navState.replace("/counter")} />
+                <Button variant="ghost" label="← 后退" on:click={() => navState.back()} />
+                <Button variant="ghost" label="前进 →" on:click={() => navState.forward()} />
+            </div>
+        </Card>
+
+        <Card variant="bordered" style="margin-bottom: 24px">
+            <h3 style="margin:0 0 12px">动态路由参数</h3>
+            <p style="margin:0 0 12px; color: var(--voa-text-secondary); font-size: 14px">
+                导航到带有动态参数的页面（模拟 :id 路由）
+            </p>
+            <div class="demo-row">
+                <Button variant="outline" label="访问 /user/42" on:click={() => navState.push("/user/42")} />
+                <Button variant="outline" label="访问 /post/hello-world" on:click={() => navState.push("/post/hello-world")} />
+            </div>
+        </Card>
+    </div>
+</widget>
+
+<script>
+    let navState = use_router()
+</script>
+
+<style>
+.demo-title {
+    margin: 0 0 20px;
+}
+.demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+</style>

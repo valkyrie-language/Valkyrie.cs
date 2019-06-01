@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <Description>Valkyrie Package Manager (Legion) - Supports npm, jsr, conda, maven, nuget registries</Description>
+    <Authors>Valkyrie Team</Authors>
+    <Version>0.0.0</Version>
+    <RootNamespace>Legion</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Legion.Registry\Legion.Registry.csproj" />
+    <ProjectReference Include="..\Legion.Registry.Npm\Legion.Registry.Npm.csproj" />
+    <ProjectReference Include="..\Legion.Registry.Jsr\Legion.Registry.Jsr.csproj" />
+    <ProjectReference Include="..\Legion.Registry.Nuget\Legion.Registry.Nuget.csproj" />
+    <ProjectReference Include="..\Legion.Registry.Conda\Legion.Registry.Conda.csproj" />
+    <ProjectReference Include="..\Legion.Registry.Maven\Legion.Registry.Maven.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar\Nyar.csproj" />
+  </ItemGroup>
+
+</Project>

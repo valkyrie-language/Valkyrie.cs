@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Valkyrie.Linter</RootNamespace>
+        <AssemblyName>Valkyrie.Linter</AssemblyName>
+        <Version>0.1.0</Version>
+        <Authors>Valkyrie Team</Authors>
+        <Description>Valkyrie 代码检查器 — 代码质量 / ECS 约束 / 安全规则</Description>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak\Oak.csproj" />
+        <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    </ItemGroup>
+</Project>

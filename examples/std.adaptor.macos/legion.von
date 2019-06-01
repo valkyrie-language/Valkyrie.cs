@@ -1,0 +1,11 @@
+{
+    name: "std.adaptor.macos",
+    description: "Valkyrie macOS SDK -- macOS 平台 API 绑定",
+    main: "source/darwin.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

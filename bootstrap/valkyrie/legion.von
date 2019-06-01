@@ -1,0 +1,13 @@
+name = "valkyrie-bootstrap"
+version = "0.1.0"
+description = "Valkyrie 自举 — 用 Valkyrie 语言实现 NyarVM，在 NyarVM 指令集上自举"
+author = "Valkyrie Team"
+license = "MIT"
+main = "source/vm.v"
+
+[dependencies]
+valkyrie-core = "0.1.0"
+valkyrie-std = "0.1.0"
+
+[engines]
+vcc = ">=0.1.0"

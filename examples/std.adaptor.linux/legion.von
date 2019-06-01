@@ -1,0 +1,11 @@
+{
+    name: "std.adaptor.linux",
+    description: "Valkyrie Linux SDK -- Linux 平台 API 绑定",
+    main: "source/posix.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

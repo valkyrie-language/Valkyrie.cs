@@ -1,0 +1,40 @@
+<widget>
+    <div class="home-page">
+        <Card variant="elevated">
+            <h2 style="margin:0 0 8px">欢迎使用 VOA Router + Effect</h2>
+            <p style="margin:0; color: var(--voa-text-secondary); line-height:1.8">
+                本示例展示了 VOA 框架的两大核心能力：
+            </p>
+            <div style="display:flex; gap:16px; margin-top:16px">
+                <Card variant="filled" style="flex:1">
+                    <h3 style="margin:0 0 8px">🗺️ 声明式路由</h3>
+                    <ul style="margin:0; padding-left:20px; color:var(--voa-text-secondary); font-size:14px">
+                        <li>文件系统路由（pages/ 目录）</li>
+                        <li>动态路由参数（:id / [id]）</li>
+                        <li>Catch-all 路由（[...slug]）</li>
+                        <li>编程式导航（push/replace/back/forward）</li>
+                        <li>路由守卫（认证检查）</li>
+                        <li>路由预取（prefetch）</li>
+                    </ul>
+                </Card>
+                <Card variant="filled" style="flex:1">
+                    <h3 style="margin:0 0 8px">⚡ 响应式 Effect</h3>
+                    <ul style="margin:0; padding-left:20px; color:var(--voa-text-secondary); font-size:14px">
+                        <li>useState — 响应式状态</li>
+                        <li>useEffect — 副作用管理</li>
+                        <li>useMemo — 计算缓存</li>
+                        <li>useRef — 可变引用</li>
+                        <li>useCallback — 回调记忆</li>
+                        <li>createSignal — 细粒度响应</li>
+                    </ul>
+                </Card>
+            </div>
+        </Card>
+    </div>
+</widget>
+
+<style>
+.home-page {
+    padding: 20px 0;
+}
+</style>

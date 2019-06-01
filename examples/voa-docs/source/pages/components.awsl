@@ -1,0 +1,55 @@
+<widget>
+    <div class="components-page">
+        <h1 class="page-title">组件库</h1>
+        <p class="page-desc">VOA 提供 {length(allDocs)} 个内置组件，覆盖通用、布局、表单、数据展示、反馈五大类。</p>
+
+        <div class="comp-grid">
+            <for each={allDocs}>
+                <Link href={"/components/" + doc.name}>
+                    <Card variant="bordered" class="comp-card">
+                        <div class="comp-card-header">
+                            <span class="comp-card-name">{doc.name}</span>
+                            <Badge variant="info" size="small">{doc.category}</Badge>
+                        </div>
+                        <p class="comp-card-desc">{doc.description}</p>
+                        <div class="comp-card-meta">
+                            <span>{length(doc.props)} props</span>
+                            <span>{length(doc.events)} events</span>
+                            <span>{length(doc.slots)} slots</span>
+                        </div>
+                    </Card>
+                </Link>
+            </for>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let allDocs = get_component_docs()
+</script>
+
+<style>
+.page-title { margin: 0 0 8px; font-size: 28px; font-weight: 800; }
+.page-desc { margin: 0 0 24px; font-size: 15px; color: var(--voa-text-secondary); }
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+.comp-card { cursor: pointer; transition: border-color var(--voa-transition-fast); }
+.comp-card:hover { border-color: var(--voa-accent); }
+.comp-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.comp-card-name { font-size: 16px; font-weight: 700; color: var(--voa-accent); }
+.comp-card-desc { margin: 0 0 10px; font-size: 13px; color: var(--voa-text-secondary); line-height: 1.5; }
+.comp-card-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--voa-text-tertiary);
+}
+</style>

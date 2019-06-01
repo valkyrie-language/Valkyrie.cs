@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.Compiler</RootNamespace>
+    <AssemblyName>Valkyrie.Compiler</AssemblyName>
+    <PackageId>Valkyrie.Compiler</PackageId>
+    <Version>0.0.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 新编译器骨架，负责 AST 到 HIR/MIR/LIR 与 multi target 交付。</Description>
+    <PackageTags>valkyrie;compiler;hir;mir;lir;nyar</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar\Nyar.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler\Nyar.Assembler.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Wasm\Nyar.Assembler.Wasm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Jvm\Nyar.Assembler.Jvm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.DotNet\Nyar.Assembler.Clr.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Native\Nyar.Assembler.Native.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Semantic\Nyar.Semantic.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Acorn.cs\projects\Acorn.Wasm\Acorn.Wasm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Acorn.cs\projects\Acorn.Jvm\Acorn.Jvm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Acorn.cs\projects\Acorn.Clr\Acorn.Clr.csproj" />
+    <ProjectReference Include="..\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+  </ItemGroup>
+
+</Project>

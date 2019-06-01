@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>VCC — Valkyrie Compiler Collection 编译器命令行工具</Description>
+    <Authors>Valkyrie Team</Authors>
+    <Version>0.1.0</Version>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>vcc</AssemblyName>
+    <RootNamespace>Valkyrie.CLI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\projects\Valkyrie.Compiler\Valkyrie.Compiler.csproj" />
+    <ProjectReference Include="..\..\projects\Valkyrie.Runtime\Valkyrie.Runtime.csproj" />
+    <ProjectReference Include="..\..\projects\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar\Nyar.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Optimizer\Nyar.Optimizer.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Assembler.Wasm\Nyar.Assembler.Wasm.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Assembler.Jvm\Nyar.Assembler.Jvm.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Assembler.DotNet\Nyar.Assembler.Clr.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Assembler.Native\Nyar.Assembler.Native.csproj" />
+    <ProjectReference Include="..\..\..\Acorn.cs\projects\Acorn.Nyar\Acorn.Nyar.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+    <ProjectReference Include="..\..\..\Olymp.Iris\projects\Iris.CLI\Iris.CLI.csproj" />
+  </ItemGroup>
+
+</Project>

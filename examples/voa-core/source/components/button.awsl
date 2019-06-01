@@ -1,0 +1,56 @@
+<widget>
+    <div class="voa-btn-wrapper">
+        <button class="voa-btn {variant}" on:click={handleClick} disabled={disabled}>
+            {label}
+        </button>
+    </div>
+</widget>
+
+<script>
+    let label: string = "Button"
+    let variant: string = "default"
+    let disabled: bool = false
+
+    micro handleClick() {
+        if (!disabled) {
+            emit("click", {})
+        }
+    }
+</script>
+
+<style>
+.voa-btn-wrapper {
+    display: inline-block;
+}
+.voa-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--voa-border, #333);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    background: var(--voa-card, #1a1a2e);
+    color: var(--voa-text, #e0e0e0);
+    transition: all 0.2s;
+}
+.voa-btn:hover {
+    background: var(--voa-hover, #2a2a3e);
+    border-color: var(--voa-accent, #58a6ff);
+}
+.voa-btn.primary {
+    background: var(--voa-accent, #58a6ff);
+    color: #fff;
+    border-color: var(--voa-accent, #58a6ff);
+}
+.voa-btn.primary:hover {
+    opacity: 0.9;
+}
+.voa-btn.danger {
+    background: #da3633;
+    color: #fff;
+    border-color: #da3633;
+}
+.voa-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+</style>

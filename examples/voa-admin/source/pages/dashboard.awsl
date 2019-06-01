@@ -1,0 +1,45 @@
+<widget>
+    <div class="dashboard-page">
+        <div class="stats-grid">
+            <Card variant="bordered">
+                <div class="stat-value">{stats.total_users}</div>
+                <div class="stat-label">总用户数</div>
+            </Card>
+            <Card variant="bordered">
+                <div class="stat-value">{stats.active_users}</div>
+                <div class="stat-label">活跃用户</div>
+            </Card>
+            <Card variant="bordered">
+                <div class="stat-value">{stats.new_today}</div>
+                <div class="stat-label">今日新增</div>
+            </Card>
+            <Card variant="bordered">
+                <div class="stat-value">{stats.revenue}</div>
+                <div class="stat-label">本月收入</div>
+            </Card>
+        </div>
+
+        <Card variant="bordered" title="最近活动" style="margin-top: 24px">
+            <List items={recentActivities} />
+        </Card>
+    </div>
+</widget>
+
+<script>
+    let stats = get_dashboard_stats()
+    let recentActivities = [
+        { label: "新用户注册", description: "editor@voa.dev", icon: "👤", badge: "新" },
+        { label: "系统更新", description: "VOA v0.2.0 已部署", icon: "🚀" },
+        { label: "数据备份", description: "自动备份完成", icon: "💾", badge: "完成" }
+    ]
+</script>
+
+<style>
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+.stat-value { font-size: 28px; font-weight: 800; color: var(--voa-accent); }
+.stat-label { font-size: 13px; color: var(--voa-text-secondary); margin-top: 4px; }
+</style>

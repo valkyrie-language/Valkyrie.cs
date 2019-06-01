@@ -1,0 +1,38 @@
+<widget>
+    <div class="posts-page">
+        <h1 class="posts-title">所有文章</h1>
+        <for each={posts}>
+            <article class="post-item">
+                <div class="post-item-meta">
+                    <span>{post.date}</span>
+                    <span>{post.reading_time} 分钟</span>
+                </div>
+                <h2 class="post-item-title">
+                    <Link href={"/posts/" + post.slug}>{post.title}</Link>
+                </h2>
+                <p class="post-item-excerpt">{post.excerpt}</p>
+                <div class="post-item-tags">
+                    <for each={post.tags}>
+                        <Badge variant="primary" size="small">{tag}</Badge>
+                    </for>
+                </div>
+            </article>
+        </for>
+    </div>
+</widget>
+
+<script>
+    let posts = get_all_posts()
+</script>
+
+<style>
+.posts-page { padding: 20px 0; }
+.posts-title { margin: 0 0 32px; font-size: 28px; font-weight: 800; }
+.post-item { padding: 20px 0; border-bottom: 1px solid var(--voa-border); }
+.post-item-meta { font-size: 13px; color: var(--voa-text-tertiary); margin-bottom: 8px; display: flex; gap: 12px; }
+.post-item-title { margin: 0 0 8px; font-size: 20px; }
+.post-item-title a { color: var(--voa-text); text-decoration: none; }
+.post-item-title a:hover { color: var(--voa-accent); }
+.post-item-excerpt { margin: 0 0 10px; font-size: 14px; color: var(--voa-text-secondary); }
+.post-item-tags { display: flex; gap: 6px; }
+</style>

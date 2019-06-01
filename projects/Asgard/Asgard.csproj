@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>VOA Core — Valkyrie of Asgard 标准库（组件 + 标准函数 + Effect 系统 + 文件路由）</Description>
+    <Authors>VOA Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Asgard</RootNamespace>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+</Project>

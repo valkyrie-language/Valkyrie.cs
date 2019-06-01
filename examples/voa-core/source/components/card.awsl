@@ -1,0 +1,68 @@
+<widget>
+    <div class="voa-card {variant}">
+        <if condition={title}>
+            <div class="voa-card-header">
+                <h3 class="voa-card-title">{title}</h3>
+                <if condition={subtitle}>
+                    <span class="voa-card-subtitle">{subtitle}</span>
+                <else/>
+                </if>
+            </div>
+        <else/>
+        </if>
+        <div class="voa-card-body">
+            {children}
+        </div>
+        <if condition={footer}>
+            <div class="voa-card-footer">
+                {footer}
+            </div>
+        <else/>
+        </if>
+    </div>
+</widget>
+
+<script>
+    let title: string = ""
+    let subtitle: string = ""
+    let variant: string = "default"
+    let footer: string = ""
+</script>
+
+<style>
+.voa-card {
+    background: var(--voa-card, #161b22);
+    border: 1px solid var(--voa-border, #21262d);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.voa-card.bordered {
+    border-width: 2px;
+}
+.voa-card.elevated {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.voa-card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--voa-border, #21262d);
+}
+.voa-card-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--voa-text, #e6edf3);
+}
+.voa-card-subtitle {
+    font-size: 13px;
+    color: var(--voa-text2, #8b949e);
+    margin-top: 4px;
+}
+.voa-card-body {
+    padding: 20px;
+}
+.voa-card-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--voa-border, #21262d);
+    background: rgba(0, 0, 0, 0.1);
+}
+</style>

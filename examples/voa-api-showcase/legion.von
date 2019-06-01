@@ -1,0 +1,11 @@
+{
+    "name": "voa-api-showcase",
+    "version": "0.1.0",
+    "description": "VOA API Routes + 中间件 交互展示",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-api": ">=0.2.0",
+        "voa-middleware": ">=0.1.0"
+    }
+}

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>VOA ToolChain - Valkyrie of Asgard 全栈框架命令行工具</Description>
+    <Authors>VOA Team</Authors>
+    <Version>0.0.3</Version>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>voa</AssemblyName>
+    <RootNamespace>Asgard.CLI</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="e:\RiderProjects\Valkyrie.cs\projects\Valkyrie.Compiler\Valkyrie.Compiler.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Valkyrie.cs\projects\Legion\Legion.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Valkyrie.cs\projects\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Awsl\Oak.Awsl.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Wasm\Nyar.Assembler.Wasm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Jvm\Nyar.Assembler.Jvm.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.DotNet\Nyar.Assembler.Clr.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Native\Nyar.Assembler.Native.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Optimizer\Nyar.Optimizer.csproj" />
+    <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Dialect.Web\Nyar.Dialect.Web.csproj" />
+    <ProjectReference Include="..\..\..\..\Olymp.Iris\projects\Iris.CLI\Iris.CLI.csproj" />
+  </ItemGroup>
+
+</Project>

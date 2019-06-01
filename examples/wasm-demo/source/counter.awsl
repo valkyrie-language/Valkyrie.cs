@@ -1,0 +1,41 @@
+<widget>
+    <div class="voa-card">
+        <h2>计数器</h2>
+        <div class="voa-row">
+            <button class="voa-btn" on:click={decrement}>-</button>
+            <span class="voa-counter">{count}</span>
+            <button class="voa-btn" on:click={increment}>+</button>
+        </div>
+        <div class="voa-row" style="margin-top: 8px; font-size: 13px; color: #888">
+            <span>双倍值：{double_count}</span>
+            <button class="voa-btn" on:click={reset} style="margin-left: auto">重置</button>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let mut count: i32 = 0
+    let double_count = count * 2
+
+    micro increment() {
+        count = count + 1
+    }
+
+    micro decrement() {
+        count = count - 1
+    }
+
+    micro reset() {
+        count = 0
+    }
+</script>
+
+<style>
+.voa-card { background: var(--voa-card); border: 1px solid var(--voa-border); border-radius: 8px; padding: 20px }
+.voa-card h2 { font-size: 14px; color: var(--voa-accent); margin-bottom: 12px }
+.voa-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap }
+.voa-btn { padding: 8px 16px; border: 1px solid #333; border-radius: 6px; background: var(--voa-bg2); color: var(--voa-text); cursor: pointer; font-size: 13px; transition: all 0.15s }
+.voa-btn:hover { background: #2a2a3e; border-color: var(--voa-accent) }
+.voa-btn:active { transform: scale(0.97) }
+.voa-counter { font-size: 48px; font-weight: 700; color: var(--voa-accent); min-width: 80px; text-align: center; font-variant-numeric: tabular-nums }
+</style>

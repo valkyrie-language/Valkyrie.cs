@@ -1,0 +1,88 @@
+<widget>
+    <div class="router-layout">
+        <header class="router-header">
+            <h1 class="router-title">VOA Router + Effect</h1>
+            <span class="router-subtitle">声明式路由 · 编程式导航 · 响应式副作用</span>
+        </header>
+
+        <nav class="router-nav">
+            <Link href="/" exact={true}>首页</Link>
+            <Link href="/router-demo">路由演示</Link>
+            <Link href="/effect-demo">Effect 演示</Link>
+            <Link href="/counter">计数器</Link>
+        </nav>
+
+        <main class="router-main">
+            <Outlet />
+        </main>
+
+        <footer class="router-footer">
+            <p>Powered by <strong>Asgard VOA</strong></p>
+        </footer>
+    </div>
+</widget>
+
+<style>
+.router-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.router-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.router-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+.router-subtitle {
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+    flex: 1;
+}
+.router-nav {
+    display: flex;
+    gap: 4px;
+    padding: 10px 24px;
+    background: var(--voa-bg2);
+    border-bottom: 1px solid var(--voa-border);
+}
+.router-nav a {
+    padding: 6px 14px;
+    border-radius: var(--voa-radius-md);
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all var(--voa-transition-fast);
+}
+.router-nav a:hover {
+    background: var(--voa-hover);
+    color: var(--voa-text);
+}
+.router-nav a.active {
+    background: var(--voa-accent-subtle);
+    color: var(--voa-accent);
+}
+.router-main {
+    flex: 1;
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+.router-footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--voa-text-secondary);
+    font-size: 13px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

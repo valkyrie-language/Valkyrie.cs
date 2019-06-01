@@ -1,0 +1,137 @@
+<widget>
+    <div class="docs-home">
+        <section class="docs-hero">
+            <h1 class="docs-hero-title">VOA</h1>
+            <p class="docs-hero-subtitle">Valkyrie Omni App Framework</p>
+            <p class="docs-hero-desc">纯 GGScript + AWSL 的全栈框架，类似 Next.js 但不写一行 C#</p>
+            <div class="docs-hero-actions">
+                <Link href="/docs/getting-started">
+                    <Button variant="primary" size="large" label="快速开始 →" />
+                </Link>
+                <Link href="/tutorial">
+                    <Button variant="outline" size="large" label="交互式教程" />
+                </Link>
+            </div>
+        </section>
+
+        <section class="docs-features">
+            <div class="docs-feature-grid">
+                <Card variant="bordered">
+                    <h3>🗺️ 文件系统路由</h3>
+                    <p>pages/ 目录即路由，支持动态参数和 Catch-all</p>
+                </Card>
+                <Card variant="bordered">
+                    <h3>🎨 四种渲染模式</h3>
+                    <p>CSR / SSR / SSG / ISR 按路由配置</p>
+                </Card>
+                <Card variant="bordered">
+                    <h3>⚡ 响应式 Effect</h3>
+                    <p>useState / useEffect / useMemo / createSignal</p>
+                </Card>
+                <Card variant="bordered">
+                    <h3>🛡️ 中间件管道</h3>
+                    <p>洋葱模型 + CORS / JWT / RateLimit</p>
+                </Card>
+                <Card variant="bordered">
+                    <h3>🔄 HMR 热替换</h3>
+                    <p>Widget / 脚本 / 样式三级热更新 &lt; 200ms</p>
+                </Card>
+                <Card variant="bordered">
+                    <h3>☁️ 多平台部署</h3>
+                    <p>OlympCloud / Vercel / Netlify / CF Pages</p>
+                </Card>
+            </div>
+        </section>
+
+        <section class="docs-stats">
+            <div class="docs-stat-item">
+                <span class="docs-stat-value">{totalComponents}</span>
+                <span class="docs-stat-label">组件</span>
+            </div>
+            <div class="docs-stat-item">
+                <span class="docs-stat-value">{totalApis}</span>
+                <span class="docs-stat-label">API 函数</span>
+            </div>
+            <div class="docs-stat-item">
+                <span class="docs-stat-value">11</span>
+                <span class="docs-stat-label">包</span>
+            </div>
+            <div class="docs-stat-item">
+                <span class="docs-stat-value">4</span>
+                <span class="docs-stat-label">渲染模式</span>
+            </div>
+        </section>
+    </div>
+</widget>
+
+<script>
+    let totalComponents = get_total_component_count()
+    let totalApis = get_total_api_count()
+</script>
+
+<style>
+.docs-home { }
+.docs-hero {
+    text-align: center;
+    padding: 60px 0 48px;
+}
+.docs-hero-title {
+    margin: 0;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, var(--voa-accent), var(--voa-success));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.docs-hero-subtitle {
+    margin: 8px 0 4px;
+    font-size: 20px;
+    color: var(--voa-text-secondary);
+}
+.docs-hero-desc {
+    margin: 0 0 24px;
+    font-size: 16px;
+    color: var(--voa-text-tertiary);
+}
+.docs-hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+.docs-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+.docs-feature-grid h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+}
+.docs-feature-grid p {
+    margin: 0;
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+}
+.docs-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-top: 48px;
+    padding: 32px 0;
+    border-top: 1px solid var(--voa-border);
+}
+.docs-stat-item {
+    text-align: center;
+}
+.docs-stat-value {
+    display: block;
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--voa-accent);
+}
+.docs-stat-label {
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+}
+</style>

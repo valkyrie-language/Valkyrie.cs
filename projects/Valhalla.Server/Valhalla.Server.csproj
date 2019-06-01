@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>瓦尓哈拉 HTTP 服务端 — 处理发布、检索、管理 REST API 请求</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Valhalla.Server</RootNamespace>
+    <AssemblyName>Valhalla.Server</AssemblyName>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NSec.Cryptography" Version="26.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Valhalla\Valhalla.csproj" />
+    <ProjectReference Include="..\Valhalla.Config\Valhalla.Config.csproj" />
+  </ItemGroup>
+
+</Project>

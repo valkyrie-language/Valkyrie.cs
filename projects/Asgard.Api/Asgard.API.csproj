@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>VOA API Routes — WASI HTTP 后端，基于 api/ 目录的文件路由</Description>
+    <Authors>VOA Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Asgard.API</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <PackageId>voa-api</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="source\**\*.v" Pack="true" PackagePath="contentFiles\v\source\" />
+  </ItemGroup>
+
+</Project>

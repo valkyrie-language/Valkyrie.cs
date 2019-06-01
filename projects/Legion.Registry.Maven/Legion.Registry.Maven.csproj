@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>Maven 注册表适配器 — 实现 Legion 的 IRegistry 接口，对接 Maven Central / Sonatype API</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Legion.Registry.Maven</RootNamespace>
+    <AssemblyName>Legion.Registry.Maven</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageId>Legion.Registry.Maven</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Legion.Registry\Legion.Registry.csproj" />
+  </ItemGroup>
+
+</Project>

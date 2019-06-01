@@ -1,0 +1,13 @@
+legion {
+    name: "frontend",
+    version: "0.1.0.0",
+    description: "前端应用",
+    license: "MIT",
+    dependencies: {
+        shared: "^0.1.0.0",
+        "voa-core": "^0.1.0.0",
+        "voa-router": "^0.1.0.0",
+        "voa-effect": "^0.1.0.0"
+    },
+    devDependencies: {}
+}

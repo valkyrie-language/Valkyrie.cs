@@ -1,0 +1,63 @@
+<widget>
+    <div class="effect-demo-page">
+        <h2 class="demo-title">⚡ Effect 演示</h2>
+
+        <Card variant="bordered" style="margin-bottom: 24px">
+            <h3 style="margin:0 0 12px">useState — 响应式计数器</h3>
+            <p style="margin:0 0 12px; font-size: 24px; font-weight:700; color: var(--voa-accent)">{count_state[0]}</p>
+            <div class="demo-row">
+                <Button variant="primary" label="+1" on:click={() => count_state[1](count_state[0] + 1)} />
+                <Button variant="danger" label="-1" on:click={() => count_state[1](count_state[0] - 1)} />
+                <Button variant="ghost" label="归零" on:click={() => count_state[1](0)} />
+            </div>
+        </Card>
+
+        <Card variant="bordered" style="margin-bottom: 24px">
+            <h3 style="margin:0 0 12px">useMemo — 计算缓存</h3>
+            <p style="margin:0; color: var(--voa-text-secondary); font-size: 14px">
+                当前值：{count_state[0]} → 平方：<strong style="color: var(--voa-accent)">{count_state[0] * count_state[0]}</strong> → 双倍：<strong style="color: var(--voa-accent)">{count_state[0] * 2}</strong>
+            </p>
+            <p style="margin:4px 0 0; color: var(--voa-text-tertiary); font-size: 12px">
+                仅在 count 变化时重新计算
+            </p>
+        </Card>
+
+        <Card variant="bordered" style="margin-bottom: 24px">
+            <h3 style="margin:0 0 12px">useRef — 可变引用</h3>
+            <p style="margin:0; color: var(--voa-text-secondary); font-size: 14px">
+                组件挂载时间：<strong style="color: var(--voa-accent)">{mount_time.current}</strong>
+            </p>
+            <p style="margin:4px 0 0; color: var(--voa-text-tertiary); font-size: 12px">
+                ref 值在更新时不会触发重渲染
+            </p>
+        </Card>
+    </div>
+</widget>
+
+<script>
+    let count_state = use_state(0)
+    let mount_time = use_ref("")
+
+    micro onMount() {
+        mount_time.current = format_time(now())
+    }
+
+    micro now(): i64 {
+        return 0
+    }
+
+    micro format_time(ts: i64): string {
+        return "2026-10-01 10:00:00"
+    }
+</script>
+
+<style>
+.demo-title {
+    margin: 0 0 20px;
+}
+.demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+</style>

@@ -1,0 +1,10 @@
+legion {
+    name: "voa-router",
+    version: "0.1.0.0",
+    description: "VOA 路由系统 - 文件系统自动路由",
+    license: "MIT",
+    dependencies: {
+        "voa-core": "^0.1.0.0"
+    },
+    devDependencies: {}
+}

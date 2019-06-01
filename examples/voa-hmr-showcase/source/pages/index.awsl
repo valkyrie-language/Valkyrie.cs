@@ -1,0 +1,64 @@
+<widget>
+    <div class="hmr-home">
+        <Card variant="elevated" style="margin-bottom: 24px">
+            <h2 style="margin:0 0 12px">HMR + DevTools 开发体验</h2>
+            <p style="margin:0; color: var(--voa-text-secondary); line-height: 1.8">
+                右上角 HMR 指示器显示当前热替换状态。修改任何 <code>.awsl</code> 或 <code>.v</code> 文件，
+                浏览器即时更新（<200ms），无需手动刷新。出现编译错误时，全屏错误覆盖层自动弹出。
+                按 <kbd style="padding:1px 5px; border-radius:3px; border:1px solid var(--voa-border); font-family:monospace; font-size:11px">Ctrl+Shift+D</kbd> 打开 DevTools 面板检查框架内部状态。
+            </p>
+        </Card>
+
+        <div class="hmr-grid">
+            <Card variant="bordered" title="🔄 HMR 热替换">
+                <ul class="hmr-list">
+                    <li>Widget 级别热替换（.awsl）</li>
+                    <li>脚本模块热替换（.v）</li>
+                    <li>样式即时注入（.css）</li>
+                    <li>文件删除自动清理</li>
+                    <li>编译失败友好提示</li>
+                    <li>WebSocket 断线自动重连（最多 10 次）</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="❌ 错误覆盖层">
+                <ul class="hmr-list">
+                    <li>编译/运行时错误分类展示</li>
+                    <li>源码位置可点击跳转编辑器</li>
+                    <li>错误上下文代码行高亮</li>
+                    <li>完整调用栈可折叠查看</li>
+                    <li>智能修复建议（🔧 代码修复 / 📖 文档链接）</li>
+                    <li>Esc 键关闭 · 修复后自动消失</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="🛠️ DevTools 面板">
+                <ul class="hmr-list">
+                    <li><strong>🧩 组件树</strong> — Widget 层级 + Props/State 查看</li>
+                    <li><strong>🗺️ 路由</strong> — 当前路径 + 路由表 + 中间件链</li>
+                    <li><strong>📦 缓存</strong> — fetch 缓存条目 + TTL + 标签</li>
+                    <li><strong>⚡ 性能</strong> — 渲染计时 + 标记记录</li>
+                    <li>Ctrl+Shift+D 切换 · Ctrl+Shift+C 组件树</li>
+                    <li>面板可拖拽调整高度</li>
+                </ul>
+            </Card>
+        </div>
+    </div>
+</widget>
+
+<style>
+.hmr-home { padding: 10px 0; }
+.hmr-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+.hmr-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+    line-height: 2;
+}
+.hmr-list code { padding: 1px 4px; border-radius: 3px; background: var(--voa-hover); color: var(--voa-accent); font-size: 12px; }
+</style>

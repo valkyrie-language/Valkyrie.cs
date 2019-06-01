@@ -1,0 +1,11 @@
+{
+    name: "std.adaptor.wasip1",
+    description: "Valkyrie WASI Preview 1 平台 SDK -- WASI 系统调用绑定",
+    main: "source/io.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    name: "valkyrie-core",
+    version: "0.1.0",
+    description: "Valkyrie 核心库 — 纯语言基础类型与操作，不依赖任何运行时",
+    author: "Valkyrie Team",
+    license: "MIT",
+    main: "source/primitives.v",
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

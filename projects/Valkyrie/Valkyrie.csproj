@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>Valkyrie Compiler Collection (VCC) - REPL, Package Manager, and Resolution</Description>
+    <Authors>Valkyrie Team</Authors>
+    <Version>1.0.0</Version>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>vcc</AssemblyName>
+    <RootNamespace>VCC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Legion\Legion.csproj" />
+    <ProjectReference Include="..\Valkyrie.Compiler\Valkyrie.Compiler.csproj" />
+    <ProjectReference Include="..\Valkyrie.Runtime\Valkyrie.Runtime.csproj" />
+    <ProjectReference Include="..\Valkyrie.Formatter\Valkyrie.Formatter.csproj" />
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar\Assembler\Native\Nyar.Core.Backends.Native.csproj" />
+    <ProjectReference Include="..\..\..\DejavuEngine\projects\Dejavu.Report\Dejavu.Report.csproj" />
+    <ProjectReference Include="..\..\..\Olymp.Iris\projects\Iris.CLI\Iris.CLI.csproj" />
+    <ProjectReference Include="..\..\..\Olymp.Iris\projects\Iris\Iris.csproj" />
+    <ProjectReference Include="..\..\..\Olymp.Iris\projects\Iris.Repl\Iris.Repl.csproj" />
+  </ItemGroup>
+
+</Project>

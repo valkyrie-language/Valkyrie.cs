@@ -1,0 +1,17 @@
+{
+    name: "std.adaptor.dotnet",
+    description: "Valkyrie .NET SDK -- .NET 平台 API 绑定",
+    main: "source/console.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    },
+    os: {
+        target: "windows"
+    },
+    cpu: {
+        arch: "clr"
+    }
+}

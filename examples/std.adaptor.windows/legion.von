@@ -1,0 +1,11 @@
+{
+    name: "std.adaptor.windows",
+    description: "Valkyrie Windows SDK -- Windows 平台 API 绑定",
+    main: "source/win32.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

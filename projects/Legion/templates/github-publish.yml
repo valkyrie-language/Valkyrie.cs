@@ -1,0 +1,42 @@
+name: Legion Publish
+
+on:
+  release:
+    types: [published]
+
+env:
+  DOTNET_VERSION: '9.0.x'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: legion install --frozen-lockfile --no-interactive
+
+      - name: Security audit
+        run: legion audit --severity high
+
+      - name: Determine version bump
+        id: bump
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          if [[ "$TAG" == *"-major"* ]]; then
+            echo "bump=major" >> $GITHUB_OUTPUT
+          elif [[ "$TAG" == *"-minor"* ]]; then
+            echo "bump=minor" >> $GITHUB_OUTPUT
+          else
+            echo "bump=patch" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Publish to registry
+        env:
+          LEGION_AUTH_TOKEN: ${{ secrets.LEGION_AUTH_TOKEN }}
+        run: legion publish --no-interactive --bump ${{ steps.bump.outputs.bump }}

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>Legion 注册表抽象层 — 提供 IRegistry 接口、RegistryBase 抽象基类和 DI 注入扩展点</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Legion.Registry</RootNamespace>
+    <AssemblyName>Legion.Registry</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageId>Legion.Registry</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

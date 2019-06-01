@@ -1,0 +1,45 @@
+<widget>
+    <div class="api-layout">
+        <header class="api-header">
+            <h1>VOA API Routes + Middleware</h1>
+            <span class="api-subtitle">中间件管道 · 动态路由 · 认证 · 限流</span>
+        </header>
+        <main class="api-main">
+            <slot />
+        </main>
+        <footer class="api-footer">
+            <p>Powered by <strong>Asgard VOA</strong></p>
+        </footer>
+    </div>
+</widget>
+
+<style>
+.api-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.api-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 16px 24px;
+}
+.api-header h1 { margin: 0 0 4px; font-size: 20px; }
+.api-subtitle { font-size: 13px; color: var(--voa-text-secondary); }
+.api-main {
+    flex: 1;
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.api-footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--voa-text-secondary);
+    font-size: 13px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>Valkyrie.Tests</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+        <PackageReference Include="xunit" Version="2.9.*" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+        <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Von\Oak.Von.csproj" />
+        <ProjectReference Include="..\Valkyrie.Compiler\Valkyrie.Compiler.csproj" />
+        <ProjectReference Include="..\Valkyrie.Runtime\Valkyrie.Runtime.csproj" />
+        <ProjectReference Include="..\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+        <ProjectReference Include="..\Valkyrie.Formatter\Valkyrie.Formatter.csproj" />
+        <ProjectReference Include="..\Legion\Legion.csproj" />
+        <ProjectReference Include="..\Legion.Registry.Jsr\Legion.Registry.Jsr.csproj" />
+        <ProjectReference Include="..\Legion.Registry.Npm\Legion.Registry.Npm.csproj" />
+        <ProjectReference Include="..\Legion.Registry.Nuget\Legion.Registry.Nuget.csproj" />
+        <ProjectReference Include="..\Legion.Registry.Maven\Legion.Registry.Maven.csproj" />
+        <ProjectReference Include="..\Legion.Registry.Conda\Legion.Registry.Conda.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar\Nyar.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Wasm\Nyar.Core.Backends.WASM.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Jvm\Nyar.Core.Backends.JVM.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Clr\Nyar.Core.Backends.CLR.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Assembler.Native\Nyar.Core.Backends.Native.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Optimizer\Nyar.Optimizer.csproj" />
+        <ProjectReference Include="e:\RiderProjects\NyarVM.cs\projects\Nyar.Avatar.Shader\Nyar.Avatar.Shader.csproj" />
+    </ItemGroup>
+
+</Project>

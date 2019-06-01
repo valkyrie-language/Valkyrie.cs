@@ -1,0 +1,55 @@
+<widget>
+    <div class="api-page">
+        <h1 class="page-title">API 参考</h1>
+        <p class="page-desc">11 个包 · {totalApis} 个函数 · {totalComponents} 个组件</p>
+
+        <div class="api-grid">
+            <for each={packages}>
+                <Card variant="bordered">
+                    <div class="api-card-header">
+                        <h3 class="api-card-name">{pkg.name}</h3>
+                        <Badge variant="primary" size="small">v{pkg.version}</Badge>
+                    </div>
+                    <p class="api-card-desc">{pkg.description}</p>
+                    <div class="api-card-stats">
+                        <span>{pkg.functions} 函数</span>
+                        <if condition={pkg.components > 0}>
+                            <span>{pkg.components} 组件</span>
+                        <else/>
+                        </if>
+                    </div>
+                </Card>
+            </for>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let packages = get_api_packages()
+    let totalApis = get_total_api_count()
+    let totalComponents = get_total_component_count()
+</script>
+
+<style>
+.page-title { margin: 0 0 8px; font-size: 28px; font-weight: 800; }
+.page-desc { margin: 0 0 24px; font-size: 15px; color: var(--voa-text-secondary); }
+.api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+}
+.api-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+.api-card-name { margin: 0; font-size: 16px; font-weight: 700; color: var(--voa-accent); }
+.api-card-desc { margin: 0 0 10px; font-size: 13px; color: var(--voa-text-secondary); }
+.api-card-stats {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--voa-text-tertiary);
+}
+</style>

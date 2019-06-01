@@ -1,0 +1,9 @@
+{
+    "name": "voa-core-showcase",
+    "version": "0.1.0",
+    "description": "VOA Core Components 交互展示 — 24 个组件的完整演示",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0"
+    }
+}

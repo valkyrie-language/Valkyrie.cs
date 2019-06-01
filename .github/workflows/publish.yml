@@ -1,0 +1,152 @@
+name: Publish Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: '包名称'
+        required: true
+        type: string
+      version:
+        description: '版本号'
+        required: true
+        type: string
+
+env:
+  DOTNET_VERSION: '11.0'
+  REGISTRY_URL: ${{ vars.VALHALLA_REGISTRY_URL || 'https://valhalla.valkyrie-lang.dev' }}
+
+jobs:
+  publish:
+    name: 发布 Valkyrie 包
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: 验证包名和版本
+        run: |
+          echo "包名称: ${{ inputs.package_name || github.ref_name }}"
+          echo "版本: ${{ inputs.version || github.ref_name }}"
+          echo "注册表: ${{ env.REGISTRY_URL }}"
+
+      - name: 构建项目
+        run: dotnet build
+
+      - name: 运行测试
+        run: dotnet test --no-build --verbosity normal
+
+      - name: 创建包清单
+        id: manifest
+        run: |
+          $version = "${{ inputs.version || github.ref_name }}"
+          $version = $version -replace '^v', ''
+
+          $manifest = @{
+            name = "${{ inputs.package_name }}"
+            version = $version
+            description = "Valkyrie 包"
+            author = @{
+              name = "${{ github.actor }}"
+            }
+            license = "MIT"
+            repository = "${{ github.server_url }}/${{ github.repository }}"
+          } | ConvertTo-Json -Depth 10
+
+          Write-Output "manifest=$manifest" >> $env:GITHUB_OUTPUT
+          echo "manifest=$manifest" >> $env:GITHUB_ENV
+
+      - name: 发布到 Valhalla 注册表
+        env:
+          VALHALLA_TOKEN: ${{ secrets.VALHALLA_TOKEN }}
+        run: |
+          dotnet run --project projects/Valkyrie.ToolChains/Valkyrie.ToolChains.csproj publish \
+            --package-name "${{ inputs.package_name }}" \
+            --version "${{ inputs.version || github.ref_name }}" \
+            --registry "${{ env.REGISTRY_URL }}" \
+            --token "${{ secrets.VALHALLA_TOKEN }}"
+
+      - name: 生成发布说明
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          $version = "${{ github.ref_name }}" -replace '^v', ''
+          echo "## 发布 $version" > release-notes.md
+          echo "" >> release-notes.md
+          echo "包: ${{ inputs.package_name }}" >> release-notes.md
+          echo "发布于: $(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') UTC" >> release-notes.md
+          cat release-notes.md
+
+  attest:
+    name: 生成包证明
+    runs-on: ubuntu-latest
+    needs: publish
+    permissions:
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 下载包产物
+        uses: actions/download-artifact@v4
+        with:
+          name: package-tarball
+          path: ./
+
+      - name: 生成证明
+        uses: actions/attest-build-provenance@v1
+        with:
+          subject-path: 'package.tar.gz'
+          provenance-width: 8192
+
+  release:
+    name: 创建 GitHub Release
+    runs-on: ubuntu-latest
+    needs: [publish, attest]
+    if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 创建发布说明
+        run: |
+          $version = "${{ github.ref_name }}" -replace '^v', ''
+          cat > release-notes.md << 'EOF'
+          # 发布 $version
+
+          ## 安装
+
+          ```bash
+          legion install ${{ inputs.package_name }}@$version
+          ```
+
+          ## 变更日志
+
+          请查看 Git 提交历史获取详细变更信息。
+          EOF
+
+      - name: 创建 GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: release-notes.md
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

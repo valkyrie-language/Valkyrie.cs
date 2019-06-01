@@ -1,0 +1,86 @@
+<widget>
+    <div class="voa-input-wrapper">
+        <if condition={label}>
+            <label class="voa-input-label">{label}</label>
+        <else/>
+        </if>
+        <input
+            class="voa-input {size}"
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            on:input={handleInput}
+            on:focus={handleFocus}
+            on:blur={handleBlur}
+            disabled={disabled}
+        />
+        <if condition={error}>
+            <span class="voa-input-error">{error}</span>
+        <else/>
+        </if>
+    </div>
+</widget>
+
+<script>
+    let label: string = ""
+    let type: string = "text"
+    let placeholder: string = ""
+    let value: string = ""
+    let size: string = "medium"
+    let disabled: bool = false
+    let error: string = ""
+
+    micro handleInput(e) {
+        value = e.target.value
+        emit("input", { value: value })
+    }
+
+    micro handleFocus() {
+        emit("focus", {})
+    }
+
+    micro handleBlur() {
+        emit("blur", {})
+    }
+</script>
+
+<style>
+.voa-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.voa-input-label {
+    font-size: 13px;
+    color: var(--voa-text2, #8b949e);
+}
+.voa-input {
+    padding: 8px 12px;
+    border: 1px solid var(--voa-border, #333);
+    border-radius: 6px;
+    background: var(--voa-bg, #0d1117);
+    color: var(--voa-text, #e0e0e0);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.voa-input:focus {
+    border-color: var(--voa-accent, #58a6ff);
+}
+.voa-input.small {
+    padding: 4px 8px;
+    font-size: 12px;
+}
+.voa-input.large {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+.voa-input[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.voa-input-error {
+    font-size: 12px;
+    color: #da3633;
+}
+</style>

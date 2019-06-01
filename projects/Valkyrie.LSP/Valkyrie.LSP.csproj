@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.LSP</RootNamespace>
+    <AssemblyName>Valkyrie.LSP</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 语言 Language Server Protocol 服务端</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+    <ProjectReference Include="..\Valkyrie.Highlight\Valkyrie.Highlight.csproj" />
+    <ProjectReference Include="..\Valkyrie.Formatter\Valkyrie.Formatter.csproj" />
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+  </ItemGroup>
+
+</Project>

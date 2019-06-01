@@ -1,0 +1,11 @@
+{
+    "name": "voa-router-showcase",
+    "version": "0.1.0",
+    "description": "VOA Router + Effect 交互展示 — 声明式路由导航 + 副作用管理",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-router": ">=0.2.0",
+        "voa-effect": ">=0.2.0"
+    }
+}

@@ -1,0 +1,45 @@
+<widget>
+    <div class="build-layout">
+        <header class="build-header">
+            <h1>⚡ VOA 构建优化</h1>
+            <span class="build-subtitle">代码分割 · 图片优化 · 字体优化 · Lighthouse ≥ 90</span>
+        </header>
+        <main class="build-main">
+            <slot />
+        </main>
+        <footer class="build-footer">
+            <p>Powered by <strong>Asgard VOA</strong></p>
+        </footer>
+    </div>
+</widget>
+
+<style>
+.build-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.build-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 16px 24px;
+}
+.build-header h1 { margin: 0 0 4px; font-size: 20px; }
+.build-subtitle { font-size: 13px; color: var(--voa-text-secondary); }
+.build-main {
+    flex: 1;
+    padding: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.build-footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--voa-text-secondary);
+    font-size: 13px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

@@ -1,0 +1,146 @@
+<widget>
+    <div class="ys-branch-bar">
+        <div class="ys-branch-selector" on:click={toggleDropdown}>
+            <span class="ys-branch-icon">⌥</span>
+            <span class="ys-branch-name">{currentBranch}</span>
+            <span class="ys-branch-arrow">▾</span>
+        </div>
+        {#if showDropdown}
+            <div class="ys-branch-dropdown">
+                <div class="ys-dropdown-header">
+                    <span>切换分支</span>
+                </div>
+                {#each branches as branch}
+                    <div class="ys-branch-option {branch.name === currentBranch ? 'active' : ''}" on:click={switchBranch(branch.name)}>
+                        <span class="ys-branch-option-icon">{branch.name === currentBranch ? '●' : '○'}</span>
+                        <span class="ys-branch-option-name">{branch.name}</span>
+                        {#if branch.isRemote}
+                            <span class="ys-branch-remote-badge">远程</span>
+                        {/if}
+                    </div>
+                {/each}
+                <div class="ys-dropdown-footer">
+                    <button class="ys-btn ys-btn-sm" on:click={createBranch}>+ 新建分支</button>
+                </div>
+            </div>
+        {/if}
+    </div>
+</widget>
+
+<script>
+    let currentBranch: string = __voa_state("current_branch")
+    let showDropdown: boolean = __voa_state("branch_dropdown_open")
+    let branches: Array = __voa_state("branches")
+
+    macro toggleDropdown() { __voa_call("toggle_dropdown") }
+    macro switchBranch(name: string) { __voa_call("switch_branch", name) }
+    macro createBranch() { __voa_call("add_repo") }
+</script>
+
+<style>
+.ys-branch-bar {
+    position: relative;
+}
+
+.ys-branch-selector {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--ys-border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--ys-bg);
+}
+
+.ys-branch-selector:hover {
+    border-color: var(--ys-accent);
+    background: var(--ys-hover);
+}
+
+.ys-branch-icon {
+    color: var(--ys-accent);
+    font-size: 14px;
+}
+
+.ys-branch-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ys-text);
+}
+
+.ys-branch-arrow {
+    color: var(--ys-text3);
+    font-size: 10px;
+}
+
+.ys-branch-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    width: 240px;
+    background: var(--ys-card);
+    border: 1px solid var(--ys-border);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.ys-dropdown-header {
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ys-text3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--ys-border);
+}
+
+.ys-branch-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.ys-branch-option:hover {
+    background: var(--ys-hover);
+}
+
+.ys-branch-option.active {
+    background: var(--ys-active);
+}
+
+.ys-branch-option-icon {
+    font-size: 8px;
+    color: var(--ys-accent);
+}
+
+.ys-branch-option.active .ys-branch-option-icon {
+    color: var(--ys-accent);
+}
+
+.ys-branch-option-name {
+    font-size: 13px;
+    color: var(--ys-text);
+    flex: 1;
+}
+
+.ys-branch-remote-badge {
+    font-size: 10px;
+    color: var(--ys-text3);
+    background: var(--ys-hover);
+    padding: 1px 6px;
+    border-radius: 3px;
+}
+
+.ys-dropdown-footer {
+    padding: 8px 12px;
+    border-top: 1px solid var(--ys-border);
+}
+</style>

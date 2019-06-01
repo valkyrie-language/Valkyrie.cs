@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.TypeChecker</RootNamespace>
+    <AssemblyName>Valkyrie.TypeChecker</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 语言类型检查器</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="TypeChecker.Analysis.cs" />
+    <Compile Remove="TypeChecker.Constraints.cs" />
+    <Compile Remove="TypeChecker.Declarations.cs" />
+    <Compile Remove="TypeChecker.Expressions.cs" />
+    <Compile Remove="TypeChecker.MatchExhaustiveness.cs" />
+    <Compile Remove="TypeChecker.TypeNarrowing.cs" />
+  </ItemGroup>
+
+</Project>

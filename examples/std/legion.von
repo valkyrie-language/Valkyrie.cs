@@ -1,0 +1,20 @@
+{
+    name: "std",
+    description: "Valkyrie 标准库 -- 跨平台统一接口, 编译时分发到各平台 SDK",
+    main: "source/io.v",
+    dependencies: {
+        "core": "workspace",
+        "std.adaptor.nyar": { version: "workspace", os: "nyar" },
+        "std.adaptor.dotnet": { version: "workspace", os: "windows" },
+        "std.adaptor.jvm": { version: "workspace", os: "linux" },
+        "std.adaptor.windows": { version: "workspace", os: "windows" },
+        "std.adaptor.linux": { version: "workspace", os: "linux" },
+        "std.adaptor.macos": { version: "workspace", os: "macos" },
+        "std.adaptor.wasm": { version: "workspace", os: "wasm" },
+        "std.adaptor.wasip1": { version: "workspace", os: "wasip1" },
+        "std.adaptor.wasip2": { version: "workspace", os: "wasip2" }
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

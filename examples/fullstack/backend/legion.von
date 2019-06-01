@@ -1,0 +1,11 @@
+legion {
+    name: "backend",
+    version: "0.1.0.0",
+    description: "后端服务",
+    license: "MIT",
+    dependencies: {
+        shared: "^0.1.0.0",
+        "voa-core": "^0.1.0.0"
+    },
+    devDependencies: {}
+}

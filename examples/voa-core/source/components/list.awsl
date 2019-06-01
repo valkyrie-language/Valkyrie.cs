@@ -1,0 +1,98 @@
+<widget>
+    <div class="voa-list">
+        <if condition={header}>
+            <div class="voa-list-header">{header}</div>
+        <else/>
+        </if>
+        <loop item in {items}>
+            <div class="voa-list-item {item.active ? 'active' : ''}" on:click={() => selectItem(item)}>
+                <if condition={item.icon}>
+                    <span class="voa-list-icon">{item.icon}</span>
+                <else/>
+                </if>
+                <div class="voa-list-content">
+                    <span class="voa-list-label">{item.label}</span>
+                    <if condition={item.description}>
+                        <span class="voa-list-desc">{item.description}</span>
+                    <else/>
+                    </if>
+                </div>
+                <if condition={item.badge}>
+                    <span class="voa-list-badge">{item.badge}</span>
+                <else/>
+                </if>
+            </div>
+        </loop>
+    </div>
+</widget>
+
+<script>
+    let items: list = []
+    let header: string = ""
+
+    micro selectItem(item) {
+        emit("select", { item: item })
+    }
+</script>
+
+<style>
+.voa-list {
+    border: 1px solid var(--voa-border, #21262d);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.voa-list-header {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--voa-text3, #6e7681);
+    border-bottom: 1px solid var(--voa-border, #21262d);
+    background: rgba(0, 0, 0, 0.1);
+}
+.voa-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid var(--voa-border, #21262d);
+}
+.voa-list-item:last-child {
+    border-bottom: none;
+}
+.voa-list-item:hover {
+    background: var(--voa-hover, #161b22);
+}
+.voa-list-item.active {
+    background: var(--voa-active, #1c2333);
+    color: var(--voa-accent, #58a6ff);
+}
+.voa-list-icon {
+    font-size: 18px;
+    width: 24px;
+    text-align: center;
+}
+.voa-list-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.voa-list-label {
+    font-size: 14px;
+    color: var(--voa-text, #e6edf3);
+}
+.voa-list-desc {
+    font-size: 12px;
+    color: var(--voa-text2, #8b949e);
+}
+.voa-list-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: var(--voa-accent, #58a6ff);
+    color: #fff;
+}
+</style>

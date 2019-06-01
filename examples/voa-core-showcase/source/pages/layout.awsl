@@ -1,0 +1,132 @@
+<widget>
+    <div class="showcase-layout" data-theme={theme}>
+        <header class="showcase-header">
+            <h1 class="showcase-title">VOA Core Components</h1>
+            <span class="showcase-subtitle">24 个组件 · 暗色/亮色双主题</span>
+            <div class="showcase-theme-toggle">
+                <Button
+                    variant="outline"
+                    size="small"
+                    icon={theme == 'dark' ? '☀️' : '🌙'}
+                    label={theme == 'dark' ? '亮色' : '暗色'}
+                    on:click={toggleTheme}
+                />
+            </div>
+        </header>
+
+        <nav class="showcase-nav">
+            <for each={sections}>
+                <a class="showcase-nav-link" href={"#" + item.id}>{item.title}</a>
+            </for>
+        </nav>
+
+        <main class="showcase-main">
+            <slot />
+        </main>
+
+        <footer class="showcase-footer">
+            <p>Powered by <strong>Asgard VOA</strong> — 纯 GGScript + AWSL 全栈框架</p>
+        </footer>
+    </div>
+</widget>
+
+<script>
+    let theme: string = "dark"
+    let sections: [{ id: string, title: string }] = [
+        { id: "button", title: "Button 按钮" },
+        { id: "badge", title: "Badge 徽标" },
+        { id: "card", title: "Card 卡片" },
+        { id: "input", title: "Input 输入框" },
+        { id: "switch", title: "Switch 开关" },
+        { id: "select", title: "Select 选择器" },
+        { id: "form", title: "Form 表单" },
+        { id: "modal", title: "Modal 模态框" },
+        { id: "dialog", title: "Dialog 对话框" },
+        { id: "drawer", title: "Drawer 抽屉" },
+        { id: "tabs", title: "Tabs 标签页" },
+        { id: "accordion", title: "Accordion 折叠面板" },
+        { id: "toast", title: "Toast 消息提示" },
+        { id: "tooltip", title: "Tooltip 工具提示" },
+        { id: "dropdown", title: "Dropdown 下拉菜单" },
+        { id: "list", title: "List 列表" },
+        { id: "datatable", title: "DataTable 数据表格" },
+        { id: "pagination", title: "Pagination 分页" },
+        { id: "breadcrumb", title: "Breadcrumb 面包屑" },
+        { id: "avatar", title: "Avatar 头像" },
+        { id: "progress", title: "Progress 进度条" },
+        { id: "skeleton", title: "Skeleton 骨架屏" }
+    ]
+
+    micro toggleTheme() {
+        theme = theme == "dark" ? "light" : "dark"
+    }
+</script>
+
+<style>
+.showcase-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.showcase-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+.showcase-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+.showcase-subtitle {
+    font-size: 13px;
+    color: var(--voa-text-secondary);
+    flex: 1;
+}
+.showcase-nav {
+    display: flex;
+    gap: 4px;
+    padding: 8px 24px;
+    overflow-x: auto;
+    background: var(--voa-bg2);
+    border-bottom: 1px solid var(--voa-border);
+    position: sticky;
+    top: 60px;
+    z-index: 40;
+}
+.showcase-nav-link {
+    padding: 6px 12px;
+    border-radius: var(--voa-radius-md);
+    color: var(--voa-text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all var(--voa-transition-fast);
+}
+.showcase-nav-link:hover {
+    background: var(--voa-hover);
+    color: var(--voa-text);
+}
+.showcase-main {
+    flex: 1;
+    padding: 24px;
+    max-width: 960px;
+    margin: 0 auto;
+    width: 100%;
+}
+.showcase-footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--voa-text-secondary);
+    font-size: 13px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

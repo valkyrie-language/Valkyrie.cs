@@ -1,0 +1,59 @@
+<Solution>
+    <!-- Valkyrie Language -->
+    <Folder Name="/Valkyrie/">
+        <Project Path="projects/Valkyrie/Valkyrie.csproj" />
+        <Project Path="projects/Valkyrie.Formatter/Valkyrie.Formatter.csproj" />
+        <Project Path="projects/Valkyrie.Highlight/Valkyrie.Highlight.csproj" />
+        <Project Path="projects/Valkyrie.LSP/Valkyrie.LSP.csproj" />
+        <Project Path="projects/Valkyrie.Compiler/Valkyrie.Compiler.csproj" />
+        <Project Path="projects/Valkyrie.Analyzer/Valkyrie.Analyzer.csproj" />
+        <Project Path="projects/Valkyrie.ToolChains/Valkyrie.ToolChains.csproj" />
+        <Project Path="projects/Valkyrie.TypeChecker/Valkyrie.TypeChecker.csproj" />
+        <Project Path="projects/Valkyrie.Interpreter/Valkyrie.Interpreter.csproj" />
+        <Project Path="projects/Valkyrie.Linter/Valkyrie.Linter.csproj" />
+    </Folder>
+
+    <!-- Legion Package Manager -->
+    <Folder Name="/Legion/">
+        <Project Path="projects/Legion.Registry/Legion.Registry.csproj" />
+        <Project Path="projects/Legion.Registry.Npm/Legion.Registry.Npm.csproj" />
+        <Project Path="projects/Legion.Registry.Jsr/Legion.Registry.Jsr.csproj" />
+        <Project Path="projects/Legion.Registry.Conda/Legion.Registry.Conda.csproj" />
+        <Project Path="projects/Legion.Registry.Nuget/Legion.Registry.Nuget.csproj" />
+        <Project Path="projects/Legion.Registry.Maven/Legion.Registry.Maven.csproj" />
+        <Project Path="projects/Legion.Registry.Valhalla/Legion.Registry.Valhalla.csproj" />
+        <Project Path="projects/Legion/Legion.csproj" />
+    </Folder>
+
+    <!-- Valhalla Package Standard -->
+    <Folder Name="/Valhalla/">
+        <Project Path="projects/Valhalla/Valhalla.csproj" />
+        <Project Path="projects/Valhalla.Client/Valhalla.Client.csproj" />
+        <Project Path="projects/Valhalla.Config/Valhalla.Config.csproj" />
+        <Project Path="projects/Valhalla.Server/Valhalla.Server.csproj" />
+    </Folder>
+
+    <!-- Asgard VOA Framework -->
+    <Folder Name="/Asgard/">
+        <Project Path="projects/Asgard.Api/Asgard.API.csproj" />
+        <Project Path="projects/Asgard/Asgard.csproj" />
+        <Project Path="projects/Asgard.Effect/Asgard.Effect.csproj" />
+        <Project Path="projects/Asgard.I18n/Legion.Registry.Maven.csproj" />
+        <Project Path="projects/Asgard.Seo/Asgard.SEO.csproj" />
+    </Folder>
+
+    <!-- Tools -->
+    <Folder Name="/Tools/">
+        <Project Path="tools/vcc/Valkyrie.CLI.csproj" />
+        <Project Path="tools/asgard/Asgard.CLI.csproj" />
+        <Project Path="tools/legion/Legion.CLI.csproj" />
+    </Folder>
+
+    <!-- Tests -->
+    <Folder Name="/Tests/">
+        <Project Path="projects/Valkyrie.Tests/Valkyrie.Tests.csproj" />
+        <Project Path="projects/Asgard.Tests/Asgard.Tests.csproj" />
+        <Project Path="projects/Legion.Tests/Valkyrie.PackageManager.Tests.csproj" />
+        <Project Path="projects/Valhalla.Tests/Valhalla.Tests.csproj" />
+    </Folder>
+</Solution>

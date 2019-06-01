@@ -1,0 +1,64 @@
+<widget>
+    <div class="showcase-layout">
+        <header class="showcase-header">
+            <h1 class="showcase-title">⚡ VOA HMR + DevTools</h1>
+            <span class="showcase-subtitle">热模块替换 · 错误覆盖层 · DevTools 面板</span>
+            <div class="showcase-hmr">
+                <HmrIndicator />
+            </div>
+        </header>
+
+        <main class="showcase-main">
+            <slot />
+        </main>
+
+        <footer class="showcase-footer">
+            <span>Ctrl+Shift+D 打开 DevTools · Esc 关闭错误覆盖层</span>
+        </footer>
+
+        <ErrorOverlay />
+        <DevToolsPanel />
+    </div>
+</widget>
+
+<script>
+    micro onMount() {
+        init_hmr({ server_url: "ws://localhost:3000/__voa_hmr__" })
+        init_error_overlay({ capture_runtime: true })
+        init_devtools({ enabled: true })
+    }
+</script>
+
+<style>
+.showcase-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.showcase-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.showcase-title { margin: 0; font-size: 18px; font-weight: 700; }
+.showcase-subtitle { font-size: 12px; color: var(--voa-text-secondary); flex: 1; }
+.showcase-main {
+    flex: 1;
+    padding: 32px 24px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+.showcase-footer {
+    text-align: center;
+    padding: 14px;
+    color: var(--voa-text-tertiary);
+    font-size: 12px;
+    border-top: 1px solid var(--voa-border);
+}
+</style>

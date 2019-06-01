@@ -1,0 +1,162 @@
+<widget>
+    <div class="dash-page">
+        <div class="dash-stats">
+            <Card variant="bordered">
+                <div class="dash-stat">
+                    <span class="dash-stat-label">活跃连接</span>
+                    <span class="dash-stat-value">{state.active_connections}</span>
+                </div>
+            </Card>
+            <Card variant="bordered">
+                <div class="dash-stat">
+                    <span class="dash-stat-label">总请求数</span>
+                    <span class="dash-stat-value">{format_number(state.total_requests)}</span>
+                </div>
+            </Card>
+            <Card variant="bordered">
+                <div class="dash-stat">
+                    <span class="dash-stat-label">平均响应</span>
+                    <span class="dash-stat-value">{format_ms(state.avg_response_time)}</span>
+                </div>
+            </Card>
+            <Card variant="bordered">
+                <div class="dash-stat">
+                    <span class="dash-stat-label">CPU 使用率</span>
+                    <span class="dash-stat-value">{format_percent(get_latest_value(state.cpu_usage))}</span>
+                </div>
+            </Card>
+        </div>
+
+        <div class="dash-charts">
+            <Card variant="bordered" title="CPU 使用率">
+                <div class="dash-chart">
+                    <div class="dash-bar-chart">
+                        <for each={state.cpu_usage}>
+                            <div class="dash-bar" style="height: {point.value}%; background: {point.value > 70 ? 'var(--voa-error)' : point.value > 50 ? 'var(--voa-warning)' : 'var(--voa-success)'}" />
+                        </for>
+                    </div>
+                </div>
+            </Card>
+
+            <Card variant="bordered" title="内存使用率">
+                <div class="dash-chart">
+                    <div class="dash-bar-chart">
+                        <for each={state.memory_usage}>
+                            <div class="dash-bar" style="height: {point.value}%; background: var(--voa-accent)" />
+                        </for>
+                    </div>
+                </div>
+            </Card>
+        </div>
+
+        <div class="dash-bottom">
+            <Card variant="bordered" title="服务状态" style="flex: 1">
+                <for each={state.services}>
+                    <div class="dash-service">
+                        <span class="dash-service-name">{service.name}</span>
+                        <Badge variant={service.status == "healthy" ? "success" : "warning"} size="small">
+                            {service.status == "healthy" ? "正常" : "降级"}
+                        </Badge>
+                        <span class="dash-service-latency">{service.latency}ms</span>
+                    </div>
+                </for>
+            </Card>
+
+            <Card variant="bordered" title="告警" style="flex: 1">
+                <for each={state.alerts}>
+                    <div class="dash-alert {alert.severity}">
+                        <span class="dash-alert-icon">{alert.severity == "warning" ? "⚠️" : "ℹ️"}</span>
+                        <div class="dash-alert-content">
+                            <span class="dash-alert-message">{alert.message}</span>
+                            <span class="dash-alert-time">{alert.time}</span>
+                        </div>
+                    </div>
+                </for>
+            </Card>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let state = get_dashboard_state()
+
+    micro format_number(v: i64): string {
+        return string(v)
+    }
+
+    micro format_ms(v: f64): string {
+        return string(v) + "ms"
+    }
+
+    micro format_percent(v: f64): string {
+        return string(v) + "%"
+    }
+
+    micro get_latest_value(metric_list: list): f64 {
+        if length(metric_list) == 0 { return 0.0 }
+        return metric_list[length(metric_list) - 1].value
+    }
+</script>
+
+<style>
+.dash-page { display: flex; flex-direction: column; gap: 20px; }
+.dash-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+}
+.dash-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.dash-stat-label { font-size: 12px; color: var(--voa-text-secondary); }
+.dash-stat-value { font-size: 28px; font-weight: 800; color: var(--voa-accent); }
+.dash-charts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.dash-chart { height: 160px; }
+.dash-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100%;
+    padding-top: 8px;
+}
+.dash-bar {
+    flex: 1;
+    min-width: 6px;
+    border-radius: 2px 2px 0 0;
+    transition: height 0.3s ease;
+}
+.dash-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.dash-service {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--voa-border);
+    font-size: 14px;
+}
+.dash-service:last-child { border-bottom: none; }
+.dash-service-name { flex: 1; font-weight: 500; }
+.dash-service-latency { font-size: 12px; color: var(--voa-text-tertiary); font-family: monospace; }
+.dash-alert {
+    display: flex;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--voa-border);
+}
+.dash-alert:last-child { border-bottom: none; }
+.dash-alert-icon { font-size: 16px; flex-shrink: 0; }
+.dash-alert-content { display: flex; flex-direction: column; gap: 2px; }
+.dash-alert-message { font-size: 13px; }
+.dash-alert-time { font-size: 11px; color: var(--voa-text-tertiary); }
+.dash-alert.warning .dash-alert-message { color: var(--voa-warning); }
+</style>

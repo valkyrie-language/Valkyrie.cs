@@ -1,0 +1,56 @@
+<widget>
+    <div class="counter-page">
+        <h2 class="demo-title">🔢 完整计数器示例</h2>
+        <p style="margin:0 0 20px; color: var(--voa-text-secondary)">
+            演示 useState + useEffect + useCallback 组合使用
+        </p>
+
+        <Card variant="elevated" style="text-align:center">
+            <p class="counter-value">{counter[0]}</p>
+
+            <div class="demo-row" style="justify-content:center; margin-bottom:16px">
+                <Button variant="outline" size="large" label="−" on:click={() => counter[1](counter[0] - 1)} />
+                <Button variant="primary" size="large" label="+" on:click={() => counter[1](counter[0] + 1)} />
+            </div>
+
+            <div class="demo-row" style="justify-content:center">
+                <Button variant="success" label="×2" on:click={() => counter[1](counter[0] * 2)} />
+                <Button variant="danger" label="÷2" on:click={() => counter[1](counter[0] / 2)} />
+                <Button variant="ghost" label="重置" on:click={() => counter[1](0)} />
+            </div>
+
+            <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--voa-border)">
+                <p style="margin:0; font-size:13px; color: var(--voa-text-secondary)">
+                    计数器状态：{counter[0] > 0 ? '正数' : counter[0] < 0 ? '负数' : '零'}
+                    {counter[0] > 10 ? ' 🔥 很大！' : ''}
+                </p>
+            </div>
+        </Card>
+
+        <div style="margin-top: 20px">
+            <Link href="/effect-demo">← 返回 Effect 演示</Link>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let counter = use_state(0)
+</script>
+
+<style>
+.demo-title {
+    margin: 0 0 8px;
+}
+.counter-value {
+    margin: 0 0 20px;
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--voa-accent);
+    line-height: 1;
+}
+.demo-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+</style>

@@ -1,0 +1,61 @@
+<widget>
+    <div class="dash-layout">
+        <header class="dash-header">
+            <h1 class="dash-title">⚡ 实时仪表盘</h1>
+            <div class="dash-header-right">
+                <Badge variant={state.connected ? "success" : "danger"} dot={true}>
+                    {state.connected ? "已连接" : "已断开"}
+                </Badge>
+                <span class="dash-uptime">运行 {state.uptime}</span>
+            </div>
+        </header>
+
+        <main class="dash-main">
+            <slot />
+        </main>
+    </div>
+</widget>
+
+<script>
+    let state = get_dashboard_state()
+
+    micro onMount() {
+        connect_websocket("ws://localhost:3000/__voa_ws__")
+    }
+
+    micro onUnmount() {
+        disconnect_websocket()
+    }
+</script>
+
+<style>
+.dash-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--voa-bg);
+    color: var(--voa-text);
+}
+.dash-header {
+    background: var(--voa-card);
+    border-bottom: 1px solid var(--voa-border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dash-title { margin: 0; font-size: 20px; font-weight: 800; }
+.dash-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.dash-uptime { font-size: 13px; color: var(--voa-text-secondary); }
+.dash-main {
+    flex: 1;
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+</style>

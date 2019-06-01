@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.Analyzer</RootNamespace>
+    <AssemblyName>Valkyrie.Analyzer</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 语义桥接层 —— 将 Valkyrie/Verse/Awsl 的类型检查结果桥接到 Nyar 语义模型</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\NyarVM.cs\projects\Nyar.Semantic\Nyar.Semantic.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Verse\Verse.csproj" />
+    <ProjectReference Include="..\..\..\Oak.cs\projects\Oak.Awsl\Oak.Awsl.csproj" />
+    <ProjectReference Include="..\Valkyrie.TypeChecker\Valkyrie.TypeChecker.csproj" />
+  </ItemGroup>
+
+</Project>

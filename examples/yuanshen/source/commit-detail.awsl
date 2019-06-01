@@ -1,0 +1,203 @@
+<widget>
+    <div class="ys-commit-detail">
+        <div class="ys-commit-header">
+            <div class="ys-commit-title-row">
+                <span class="ys-commit-hash">{commit.hash}</span>
+                <span class="ys-commit-badge {commit.badgeType}">{commit.badge}</span>
+            </div>
+            <h2 class="ys-commit-msg">{commit.message}</h2>
+            <div class="ys-commit-meta">
+                <img class="ys-avatar" src="" alt="" />
+                <span class="ys-commit-author">{commit.author}</span>
+                <span class="ys-commit-time">{commit.time}</span>
+                <span class="ys-commit-files">{commit.filesChanged} 个文件变更</span>
+            </div>
+        </div>
+        <div class="ys-diff-list">
+            {#each diffs as diff}
+                <div class="ys-diff-item">
+                    <div class="ys-diff-header">
+                        <span class="ys-diff-badge {diff.status}">{diff.statusLabel}</span>
+                        <span class="ys-diff-path">{diff.path}</span>
+                    </div>
+                    <div class="ys-diff-stats">
+                        <span class="ys-diff-add">+{diff.additions}</span>
+                        <span class="ys-diff-del">-{diff.deletions}</span>
+                        <div class="ys-diff-bar">
+                            <div class="ys-diff-bar-add" style="width: {diff.addPercent}%"></div>
+                        </div>
+                    </div>
+                </div>
+            {/each}
+        </div>
+    </div>
+</widget>
+
+<script>
+    let commit: Object = __voa_selected_commit()
+    let diffs: Array = __voa_state("diffs")
+</script>
+
+<style>
+.ys-commit-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.ys-commit-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--ys-border);
+}
+
+.ys-commit-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ys-commit-hash {
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 13px;
+    color: var(--ys-accent);
+    background: rgba(88, 166, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.ys-commit-badge {
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.ys-commit-badge.branch {
+    background: rgba(63, 185, 80, 0.15);
+    color: var(--ys-success);
+}
+
+.ys-commit-badge.tag {
+    background: rgba(210, 153, 34, 0.15);
+    color: var(--ys-warning);
+}
+
+.ys-commit-msg {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ys-text);
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.ys-commit-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--ys-text2);
+}
+
+.ys-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--ys-accent);
+}
+
+.ys-commit-author {
+    font-weight: 500;
+    color: var(--ys-text);
+}
+
+.ys-commit-files {
+    margin-left: auto;
+    color: var(--ys-text3);
+}
+
+.ys-diff-list {
+    padding: 8px;
+}
+
+.ys-diff-item {
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: background 0.1s;
+}
+
+.ys-diff-item:hover {
+    background: var(--ys-hover);
+}
+
+.ys-diff-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.ys-diff-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 3px;
+    min-width: 28px;
+    text-align: center;
+}
+
+.ys-diff-badge.M {
+    background: rgba(210, 153, 34, 0.15);
+    color: var(--ys-warning);
+}
+
+.ys-diff-badge.A {
+    background: rgba(63, 185, 80, 0.15);
+    color: var(--ys-success);
+}
+
+.ys-diff-badge.D {
+    background: rgba(248, 81, 73, 0.15);
+    color: var(--ys-danger);
+}
+
+.ys-diff-badge.R {
+    background: rgba(88, 166, 255, 0.15);
+    color: var(--ys-accent);
+}
+
+.ys-diff-path {
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--ys-text);
+}
+
+.ys-diff-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    padding-left: 44px;
+}
+
+.ys-diff-add {
+    color: var(--ys-success);
+}
+
+.ys-diff-del {
+    color: var(--ys-danger);
+}
+
+.ys-diff-bar {
+    width: 120px;
+    height: 6px;
+    background: var(--ys-danger);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ys-diff-bar-add {
+    height: 100%;
+    background: var(--ys-success);
+    border-radius: 3px;
+}
+</style>

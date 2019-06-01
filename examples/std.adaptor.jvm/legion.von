@@ -1,0 +1,17 @@
+{
+    name: "std.adaptor.jvm",
+    description: "Valkyrie JVM SDK -- JVM 平台 API 绑定",
+    main: "source/console.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    },
+    os: {
+        target: "jvm"
+    },
+    cpu: {
+        arch: "jvm"
+    }
+}

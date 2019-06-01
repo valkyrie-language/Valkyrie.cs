@@ -1,0 +1,112 @@
+<widget>
+    <div class="voa-modal-overlay {open ? 'visible' : ''}" on:click={handleOverlayClick}>
+        <div class="voa-modal {size}">
+            <div class="voa-modal-header">
+                <h3 class="voa-modal-title">{title}</h3>
+                <button class="voa-modal-close" on:click={close}>✕</button>
+            </div>
+            <div class="voa-modal-body">
+                {children}
+            </div>
+            <if condition={showFooter}>
+                <div class="voa-modal-footer">
+                    <slot name="footer" />
+                </div>
+            <else/>
+            </if>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let title: string = ""
+    let open: bool = false
+    let size: string = "medium"
+    let showFooter: bool = true
+    let closeOnOverlay: bool = true
+
+    micro close() {
+        open = false
+        emit("close", {})
+    }
+
+    micro handleOverlayClick(e) {
+        if (closeOnOverlay && e.target.classList.contains("voa-modal-overlay")) {
+            close()
+        }
+    }
+</script>
+
+<style>
+.voa-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+.voa-modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+.voa-modal {
+    background: var(--voa-card, #161b22);
+    border: 1px solid var(--voa-border, #21262d);
+    border-radius: 12px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+.voa-modal.small {
+    width: 400px;
+}
+.voa-modal.medium {
+    width: 560px;
+}
+.voa-modal.large {
+    width: 720px;
+}
+.voa-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--voa-border, #21262d);
+}
+.voa-modal-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--voa-text, #e6edf3);
+}
+.voa-modal-close {
+    border: none;
+    background: none;
+    color: var(--voa-text2, #8b949e);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.voa-modal-close:hover {
+    background: var(--voa-hover, #2a2a3e);
+    color: var(--voa-text, #e6edf3);
+}
+.voa-modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}
+.voa-modal-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--voa-border, #21262d);
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+</style>

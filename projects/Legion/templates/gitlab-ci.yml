@@ -1,0 +1,53 @@
+stages:
+  - install
+  - audit
+  - build
+  - publish
+
+variables:
+  DOTNET_VERSION: '9.0'
+
+install:
+  stage: install
+  image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+  script:
+    - legion install --frozen-lockfile --no-interactive
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - vendors/
+      - legion-lock.von
+
+audit:
+  stage: audit
+  image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+  needs: [install]
+  script:
+    - legion audit --severity moderate --json > audit-report.json
+  artifacts:
+    paths:
+      - audit-report.json
+    expire_in: 7 days
+  allow_failure: true
+
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+  needs: [install]
+  script:
+    - legion build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 30 days
+
+publish:
+  stage: publish
+  image: mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}
+  needs: [build]
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+  script:
+    - legion publish --no-interactive --bump patch
+  variables:
+    LEGION_AUTH_TOKEN: $LEGION_AUTH_TOKEN

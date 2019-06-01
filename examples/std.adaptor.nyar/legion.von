@@ -1,0 +1,11 @@
+{
+    name: "std.adaptor.nyar",
+    description: "Valkyrie NyarVM 平台 SDK — NyarVM 指令集绑定",
+    main: "source/builtin.v",
+    dependencies: {
+        "core": "workspace"
+    },
+    engines: {
+        vcc: ">=0.1.0"
+    }
+}

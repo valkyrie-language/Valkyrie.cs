@@ -1,0 +1,13 @@
+{
+    "name": "voa-admin",
+    "version": "0.1.0",
+    "description": "VOA 后台管理系统 — 认证 + CRUD + 表单 + 表格",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-router": ">=0.2.0",
+        "voa-effect": ">=0.2.0",
+        "voa-api": ">=0.2.0",
+        "voa-middleware": ">=0.1.0"
+    }
+}

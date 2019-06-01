@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>preview</LangVersion>
+    <Description>NuGet 注册表适配器 — 实现 Legion 的 IRegistry 接口，对接 NuGet v3 API</Description>
+    <Authors>Nyar Team</Authors>
+    <Version>0.1.0</Version>
+    <RootNamespace>Legion.Registry.Nuget</RootNamespace>
+    <AssemblyName>Legion.Registry.Nuget</AssemblyName>
+    <IsPackable>true</IsPackable>
+    <PackageId>Legion.Registry.Nuget</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Legion.Registry\Legion.Registry.csproj" />
+  </ItemGroup>
+
+</Project>

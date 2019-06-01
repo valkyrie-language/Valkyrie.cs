@@ -1,0 +1,10 @@
+{
+    "name": "voa-build-showcase",
+    "version": "0.1.0",
+    "description": "VOA 构建优化展示 — 代码分割 + 图片优化 + 字体优化",
+    "type": "application",
+    "dependencies": {
+        "voa-core": ">=0.2.0",
+        "voa-build": ">=0.1.0"
+    }
+}

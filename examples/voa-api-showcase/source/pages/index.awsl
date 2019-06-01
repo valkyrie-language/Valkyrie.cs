@@ -1,0 +1,72 @@
+<widget>
+    <div class="api-home">
+        <Card variant="elevated" style="margin-bottom: 24px">
+            <h2 style="margin:0 0 12px">API Routes 概览</h2>
+            <p style="margin:0; color: var(--voa-text-secondary); line-height: 1.8">
+                本示例展示了 VOA 的后端 API 能力。所有 API 端点定义在 <code>source/api/</code> 目录，
+                按文件名自动映射为路由。中间件在请求处理前后执行。
+            </p>
+        </Card>
+
+        <div class="api-grid">
+            <Card variant="bordered" title="🛡️ 中间件管道">
+                <ul class="api-feature-list">
+                    <li>洋葱模型请求处理链</li>
+                    <li><code>use()</code> 注册中间件</li>
+                    <li><code>next()</code> 继续下一个</li>
+                    <li>全局错误拦截器</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="🔌 内置中间件">
+                <ul class="api-feature-list">
+                    <li><Badge variant="primary">CORS</Badge> 跨域支持</li>
+                    <li><Badge variant="info">Logger</Badge> 请求日志</li>
+                    <li><Badge variant="success">Rate Limit</Badge> 速率限制</li>
+                    <li><Badge variant="warning">Security</Badge> 安全头</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="🔐 认证中间件">
+                <ul class="api-feature-list">
+                    <li><Badge variant="primary">JWT</Badge> 令牌认证</li>
+                    <li><Badge variant="success">Session</Badge> 会话认证</li>
+                    <li><Badge variant="info">API Key</Badge> 密钥认证</li>
+                    <li><Badge variant="danger">RBAC</Badge> 角色控制</li>
+                </ul>
+            </Card>
+
+            <Card variant="bordered" title="📡 API 端点">
+                <ul class="api-feature-list">
+                    <li><code>GET /api/users</code> — 用户列表</li>
+                    <li><code>GET /api/users/:id</code> — 用户详情</li>
+                    <li><code>POST /api/users</code> — 创建用户</li>
+                    <li><code>GET /api/health</code> — 健康检查</li>
+                </ul>
+            </Card>
+        </div>
+    </div>
+</widget>
+
+<style>
+.api-home { padding: 20px 0; }
+.api-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+.api-feature-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 14px;
+    color: var(--voa-text-secondary);
+    line-height: 2;
+}
+.api-feature-list code {
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: var(--voa-hover);
+    font-size: 13px;
+    color: var(--voa-accent);
+}
+</style>

@@ -1,0 +1,615 @@
+<widget>
+    <div class="showcase-page">
+
+        <!-- ============ Button ============ -->
+        <section id="button" class="showcase-section">
+            <h2 class="showcase-section-title">Button 按钮</h2>
+            <p class="showcase-section-desc">支持 7 种语义变体、3 种尺寸、loading 状态、图标。通过 <code>variant</code> <code>size</code> <code>loading</code> <code>icon</code> <code>disabled</code> 控制。</p>
+            <Card variant="bordered">
+                <div class="showcase-demo">
+                    <div class="showcase-row">
+                        <Button variant="primary" label="Primary" />
+                        <Button variant="success" label="Success" />
+                        <Button variant="warning" label="Warning" />
+                        <Button variant="danger" label="Danger" />
+                        <Button variant="default" label="Default" />
+                        <Button variant="outline" label="Outline" />
+                        <Button variant="ghost" label="Ghost" />
+                        <Button variant="link" label="Link" />
+                    </div>
+                    <div class="showcase-divider" />
+                    <div class="showcase-row">
+                        <Button variant="primary" size="small" label="Small" />
+                        <Button variant="primary" size="medium" label="Medium" />
+                        <Button variant="primary" size="large" label="Large" />
+                    </div>
+                    <div class="showcase-divider" />
+                    <div class="showcase-row">
+                        <Button variant="primary" loading={loadingDemo} label="保存" on:click={() => simulateLoading()} />
+                        <Button variant="primary" disabled={true} label="禁用" />
+                        <Button variant="primary" icon="🔍" label="搜索" />
+                        <Button variant="primary" iconRight="→" label="下一步" />
+                    </div>
+                    <div class="showcase-divider" />
+                    <div class="showcase-row">
+                        <Button variant="primary" block={true} label="块级按钮" />
+                    </div>
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Badge ============ -->
+        <section id="badge" class="showcase-section">
+            <h2 class="showcase-section-title">Badge 徽标</h2>
+            <p class="showcase-section-desc">5 种语义色 + dot 模式 + 3 种尺寸。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Badge variant="default">Default</Badge>
+                    <Badge variant="primary">Primary</Badge>
+                    <Badge variant="success">Success</Badge>
+                    <Badge variant="warning">Warning</Badge>
+                    <Badge variant="danger">Danger</Badge>
+                    <Badge variant="info">Info</Badge>
+                </div>
+                <div class="showcase-divider" />
+                <div class="showcase-row">
+                    <Badge variant="primary" size="small">Small</Badge>
+                    <Badge variant="primary">Medium</Badge>
+                    <Badge variant="primary" size="large">Large</Badge>
+                </div>
+                <div class="showcase-divider" />
+                <div class="showcase-row">
+                    <Badge variant="success" dot={true} />
+                    <Badge variant="warning" dot={true} />
+                    <Badge variant="danger" dot={true} />
+                    <span style="font-size:13px; color: var(--voa-text-secondary)">dot 模式</span>
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Card ============ -->
+        <section id="card" class="showcase-section">
+            <h2 class="showcase-section-title">Card 卡片</h2>
+            <p class="showcase-section-desc">4 种 variant：default / bordered / elevated / filled。支持 header + body + footer 插槽。</p>
+            <div class="showcase-grid">
+                <Card title="默认卡片" subtitle="default variant">
+                    <p style="margin:0; color: var(--voa-text-secondary)">这是卡片内容区，通过 slot 传入。</p>
+                    <slot name="footer">
+                        <div style="padding:12px 20px; border-top:1px solid var(--voa-border); font-size:13px; color: var(--voa-text-secondary)">
+                            卡片底部
+                        </div>
+                    </slot>
+                </Card>
+                <Card variant="elevated" title="Elevated" subtitle="带阴影">
+                    <p style="margin:0; color: var(--voa-text-secondary)">使用 elevated 变体获得更明显的悬浮感。</p>
+                </Card>
+                <Card variant="filled" title="Filled" subtitle="填充背景">
+                    <p style="margin:0; color: var(--voa-text-secondary)">filled 变体使用 bg2 背景，无边框。</p>
+                </Card>
+                <Card variant="bordered" title="Bordered" subtitle="加粗边框">
+                    <p style="margin:0; color: var(--voa-text-secondary)">bordered 变体使用 2px 边框。</p>
+                </Card>
+            </div>
+        </section>
+
+        <!-- ============ Input ============ -->
+        <section id="input" class="showcase-section">
+            <h2 class="showcase-section-title">Input 输入框</h2>
+            <p class="showcase-section-desc">支持 label、placeholder、error、disabled、三种尺寸。</p>
+            <Card variant="bordered">
+                <div class="showcase-form-demo">
+                    <Input label="用户名" placeholder="请输入用户名" />
+                    <Input label="邮箱" type="email" placeholder="name@example.com" />
+                    <Input label="密码" type="password" placeholder="请输入密码" />
+                    <Input label="错误状态" value="bad value" error="格式不正确" />
+                    <Input label="禁用状态" value="不可编辑" disabled={true} />
+                    <Input label="小尺寸" size="small" placeholder="small" />
+                    <Input label="大尺寸" size="large" placeholder="large" />
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Switch ============ -->
+        <section id="switch" class="showcase-section">
+            <h2 class="showcase-section-title">Switch 开关</h2>
+            <p class="showcase-section-desc">3 种尺寸，支持 label 和 disabled。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Switch checked={switchDemo} label={"已" + (switchDemo ? "开启" : "关闭")} on:change={(e) => { switchDemo = e.checked }} />
+                    <Switch checked={true} disabled={true} label="禁用-开" />
+                    <Switch checked={false} disabled={true} label="禁用-关" />
+                    <Switch size="small" label="小" />
+                    <Switch size="large" label="大" />
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Select ============ -->
+        <section id="select" class="showcase-section">
+            <h2 class="showcase-section-title">Select 选择器</h2>
+            <p class="showcase-section-desc">支持搜索过滤、空状态、禁用选项。通过 <code>searchable</code> 开启搜索。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <div style="width: 240px">
+                        <Select
+                            options={selectOptions}
+                            value={selectValue}
+                            placeholder="请选择框架"
+                            on:change={(e) => { selectValue = e.value }}
+                        />
+                    </div>
+                    <div style="width: 240px">
+                        <Select
+                            options={selectOptions}
+                            searchable={true}
+                            placeholder="可搜索选择器"
+                        />
+                    </div>
+                    <div style="width: 180px">
+                        <Select
+                            options={selectOptions}
+                            disabled={true}
+                            placeholder="禁用"
+                        />
+                    </div>
+                    <div style="width: 200px">
+                        <Select
+                            options={selectOptions}
+                            error={true}
+                            placeholder="错误状态"
+                        />
+                    </div>
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Form ============ -->
+        <section id="form" class="showcase-section">
+            <h2 class="showcase-section-title">Form 表单</h2>
+            <p class="showcase-section-desc">声明式表单，支持 text / email / password / textarea / select / checkbox。</p>
+            <Card variant="bordered">
+                <Form
+                    fields={formFields}
+                    submitText="创建用户"
+                    on:submit={(e) => handleFormSubmit(e)}
+                />
+            </Card>
+        </section>
+
+        <!-- ============ Modal ============ -->
+        <section id="modal" class="showcase-section">
+            <h2 class="showcase-section-title">Modal 模态框</h2>
+            <p class="showcase-section-desc">3 种尺寸，支持 overlay 关闭、footer 插槽。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Button variant="primary" label="打开 Modal" on:click={() => { modalOpen = true }} />
+                    <Button variant="outline" label="大尺寸" on:click={() => { modalOpenLarge = true }} />
+                </div>
+                <Modal
+                    title="模态框示例"
+                    open={modalOpen}
+                    size="medium"
+                    on:close={() => { modalOpen = false }}
+                >
+                    <p style="margin:0; color: var(--voa-text-secondary)">这是一个中等尺寸的模态框。点击遮罩层或 ✕ 关闭。</p>
+                    <slot name="footer">
+                        <Button variant="ghost" label="取消" on:click={() => { modalOpen = false }} />
+                        <Button variant="primary" label="确定" on:click={() => { modalOpen = false }} />
+                    </slot>
+                </Modal>
+                <Modal
+                    title="大尺寸模态框"
+                    open={modalOpenLarge}
+                    size="large"
+                    on:close={() => { modalOpenLarge = false }}
+                >
+                    <p style="margin:0; color: var(--voa-text-secondary)">大尺寸适合展示更多内容。</p>
+                    <slot name="footer">
+                        <Button variant="primary" label="关闭" on:click={() => { modalOpenLarge = false }} />
+                    </slot>
+                </Modal>
+            </Card>
+        </section>
+
+        <!-- ============ Dialog ============ -->
+        <section id="dialog" class="showcase-section">
+            <h2 class="showcase-section-title">Dialog 对话框</h2>
+            <p class="showcase-section-desc">4 种 type（info / success / warning / error），带图标和动画。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Button variant="primary" label="Info" on:click={() => { dialogInfoOpen = true }} />
+                    <Button variant="success" label="Success" on:click={() => { dialogSuccessOpen = true }} />
+                    <Button variant="warning" label="Warning" on:click={() => { dialogWarnOpen = true }} />
+                    <Button variant="danger" label="Error" on:click={() => { dialogErrorOpen = true }} />
+                </div>
+                <Dialog type="info" icon="ℹ️" title="提示" message="这是一条信息提示。" open={dialogInfoOpen} on:close={() => { dialogInfoOpen = false }} />
+                <Dialog type="success" icon="✅" title="成功" message="操作已成功完成！" open={dialogSuccessOpen} on:close={() => { dialogSuccessOpen = false }} />
+                <Dialog type="warning" icon="⚠️" title="警告" message="此操作可能带来风险，确定继续？" open={dialogWarnOpen} on:close={() => { dialogWarnOpen = false }} />
+                <Dialog type="error" icon="❌" title="错误" message="操作失败，请重试。" open={dialogErrorOpen} on:close={() => { dialogErrorOpen = false }} confirmVariant="danger" confirmText="重试" />
+            </Card>
+        </section>
+
+        <!-- ============ Drawer ============ -->
+        <section id="drawer" class="showcase-section">
+            <h2 class="showcase-section-title">Drawer 抽屉</h2>
+            <p class="showcase-section-desc">4 方向（left/right/top/bottom），4 种尺寸。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Button variant="outline" label="右侧抽屉" on:click={() => { drawerOpen = true }} />
+                </div>
+                <Drawer
+                    title="抽屉面板"
+                    open={drawerOpen}
+                    position="right"
+                    size="medium"
+                    showFooter={true}
+                    on:close={() => { drawerOpen = false }}
+                >
+                    <p style="color: var(--voa-text-secondary)">从右侧滑入的抽屉面板。适合侧边栏、设置面板等场景。</p>
+                    <slot name="footer">
+                        <Button variant="primary" label="关闭" on:click={() => { drawerOpen = false }} />
+                    </slot>
+                </Drawer>
+            </Card>
+        </section>
+
+        <!-- ============ Tabs ============ -->
+        <section id="tabs" class="showcase-section">
+            <h2 class="showcase-section-title">Tabs 标签页</h2>
+            <p class="showcase-section-desc">支持 icon、badge、disabled 状态。</p>
+            <Card variant="bordered">
+                <Tabs
+                    tabs={tabItems}
+                    defaultActive="tab1"
+                >
+                    <slot name="tab1">
+                        <p style="color: var(--voa-text-secondary)">标签页 1 的内容 — 这是默认激活的标签。</p>
+                    </slot>
+                    <slot name="tab2">
+                        <p style="color: var(--voa-text-secondary)">标签页 2 的内容 — 带有 Badge。</p>
+                    </slot>
+                    <slot name="tab3">
+                        <p style="color: var(--voa-text-secondary)">标签页 3 的内容 — 带有图标。</p>
+                    </slot>
+                </Tabs>
+            </Card>
+        </section>
+
+        <!-- ============ Accordion ============ -->
+        <section id="accordion" class="showcase-section">
+            <h2 class="showcase-section-title">Accordion 折叠面板</h2>
+            <p class="showcase-section-desc">支持单选/多选模式，通过 <code>multiple</code> 控制。</p>
+            <Card variant="bordered">
+                <Accordion
+                    items={accordionItems}
+                    multiple={false}
+                >
+                    <slot name="faq1">
+                        <p style="margin:0">VOA 是一个纯 GGScript + AWSL 的全栈框架，类似 Next.js 但不写一行 C#。</p>
+                    </slot>
+                    <slot name="faq2">
+                        <p style="margin:0">是的！通过 voa export 可以将全栈 SSG 导出为纯静态文件，部署到任何静态托管服务。</p>
+                    </slot>
+                    <slot name="faq3">
+                        <p style="margin:0">支持 SSR（服务端渲染）、SSG（静态生成）、ISR（增量静态再生成）、CSR（客户端渲染）四种模式。</p>
+                    </slot>
+                </Accordion>
+            </Card>
+        </section>
+
+        <!-- ============ Toast ============ -->
+        <section id="toast" class="showcase-section">
+            <h2 class="showcase-section-title">Toast 消息提示</h2>
+            <p class="showcase-section-desc">4 种类型 + 4 个方位。便捷方法：<code>success()</code> <code>error()</code> <code>warning()</code> <code>info()</code></p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Button variant="success" label="成功提示" on:click={() => toastRef.success("操作成功！")} />
+                    <Button variant="danger" label="错误提示" on:click={() => toastRef.error("操作失败！")} />
+                    <Button variant="warning" label="警告提示" on:click={() => toastRef.warning("请注意检查！")} />
+                    <Button variant="primary" label="信息提示" on:click={() => toastRef.info("这是一条消息。")} />
+                </div>
+                <div id="toast-container" />
+            </Card>
+        </section>
+
+        <!-- ============ Tooltip ============ -->
+        <section id="tooltip" class="showcase-section">
+            <h2 class="showcase-section-title">Tooltip 工具提示</h2>
+            <p class="showcase-section-desc">4 方向，300ms 延迟显示。</p>
+            <Card variant="bordered">
+                <div class="showcase-row" style="padding: 40px 0; justify-content: space-around">
+                    <Tooltip content="这是上方提示" position="top">
+                        <Button variant="outline" label="上" />
+                    </Tooltip>
+                    <Tooltip content="这是下方提示" position="bottom">
+                        <Button variant="outline" label="下" />
+                    </Tooltip>
+                    <Tooltip content="这是左侧提示" position="left">
+                        <Button variant="outline" label="左" />
+                    </Tooltip>
+                    <Tooltip content="这是右侧提示" position="right">
+                        <Button variant="outline" label="右" />
+                    </Tooltip>
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Dropdown ============ -->
+        <section id="dropdown" class="showcase-section">
+            <h2 class="showcase-section-title">Dropdown 下拉菜单</h2>
+            <p class="showcase-section-desc">支持 divider / header / shortcut / danger 项。</p>
+            <Card variant="bordered">
+                <Dropdown
+                    items={dropdownItems}
+                    trigger={<Button variant="outline" label="点击打开菜单 ▼" />}
+                />
+            </Card>
+        </section>
+
+        <!-- ============ List ============ -->
+        <section id="list" class="showcase-section">
+            <h2 class="showcase-section-title">List 列表</h2>
+            <p class="showcase-section-desc">支持 header、icon、description、badge、active 状态。</p>
+            <Card variant="bordered">
+                <List
+                    header="用户列表"
+                    items={listItems}
+                />
+            </Card>
+        </section>
+
+        <!-- ============ DataTable ============ -->
+        <section id="datatable" class="showcase-section">
+            <h2 class="showcase-section-title">DataTable 数据表格</h2>
+            <p class="showcase-section-desc">支持排序、斑马纹、边框、loading、空状态。</p>
+            <Card variant="bordered">
+                <DataTable
+                    columns={tableColumns}
+                    rows={tableRows}
+                    striped={true}
+                    bordered={true}
+                />
+            </Card>
+        </section>
+
+        <!-- ============ Pagination ============ -->
+        <section id="pagination" class="showcase-section">
+            <h2 class="showcase-section-title">Pagination 分页</h2>
+            <p class="showcase-section-desc">省略号折叠、尺寸切换器、总数显示。</p>
+            <Card variant="bordered">
+                <Pagination
+                    total={100}
+                    currentPage={3}
+                    pageSize={10}
+                    showTotal={true}
+                    showSizeChanger={true}
+                />
+            </Card>
+        </section>
+
+        <!-- ============ Breadcrumb ============ -->
+        <section id="breadcrumb" class="showcase-section">
+            <h2 class="showcase-section-title">Breadcrumb 面包屑</h2>
+            <p class="showcase-section-desc">自定义分隔符，支持点击跳转。</p>
+            <Card variant="bordered">
+                <Breadcrumb
+                    items={breadcrumbItems}
+                    separator="›"
+                />
+            </Card>
+        </section>
+
+        <!-- ============ Avatar ============ -->
+        <section id="avatar" class="showcase-section">
+            <h2 class="showcase-section-title">Avatar 头像</h2>
+            <p class="showcase-section-desc">图片/文字回退、4 种尺寸、状态指示器。</p>
+            <Card variant="bordered">
+                <div class="showcase-row">
+                    <Avatar name="张三" size="small" />
+                    <Avatar name="李四" size="medium" />
+                    <Avatar name="王五" size="large" />
+                    <Avatar name="赵六" size="xlarge" />
+                </div>
+                <div class="showcase-divider" />
+                <div class="showcase-row">
+                    <Avatar name="Alice" showStatus={true} status="online" />
+                    <Avatar name="Bob" showStatus={true} status="busy" />
+                    <Avatar name="Eve" showStatus={true} status="away" />
+                    <Avatar name="Mallory" showStatus={true} status="offline" />
+                </div>
+                <div class="showcase-divider" />
+                <div class="showcase-row">
+                    <Avatar name="方" shape="square" bordered={true} />
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Progress ============ -->
+        <section id="progress" class="showcase-section">
+            <h2 class="showcase-section-title">Progress 进度条</h2>
+            <p class="showcase-section-desc">4 种语义色、3 种尺寸、条纹/动画模式。</p>
+            <Card variant="bordered">
+                <div style="display:flex; flex-direction:column; gap:16px">
+                    <Progress percent={75} variant="primary" showLabel={true} />
+                    <Progress percent={50} variant="success" showLabel={true} />
+                    <Progress percent={30} variant="warning" showLabel={true} />
+                    <Progress percent={90} variant="danger" showLabel={true} />
+                    <div class="showcase-divider" />
+                    <Progress percent={60} size="small" showLabel={true} />
+                    <Progress percent={60} size="medium" showLabel={true} />
+                    <Progress percent={60} size="large" showLabel={true} />
+                    <div class="showcase-divider" />
+                    <Progress percent={65} striped={true} animated={true} showLabel={true} />
+                </div>
+            </Card>
+        </section>
+
+        <!-- ============ Skeleton ============ -->
+        <section id="skeleton" class="showcase-section">
+            <h2 class="showcase-section-title">Skeleton 骨架屏</h2>
+            <p class="showcase-section-desc">4 种 variant：text / circle / rect / card。</p>
+            <Card variant="bordered">
+                <div class="showcase-row" style="align-items: center; gap: 24px">
+                    <Skeleton variant="text" lines={3} />
+                </div>
+                <div class="showcase-divider" />
+                <div class="showcase-row" style="align-items: center; gap: 24px">
+                    <Skeleton variant="circle" width="48px" height="48px" />
+                    <div style="flex:1">
+                        <Skeleton variant="text" lines={2} />
+                    </div>
+                </div>
+                <div class="showcase-divider" />
+                <Skeleton variant="card" />
+            </Card>
+        </section>
+
+    </div>
+</widget>
+
+<script>
+    // ---- 状态 ----
+    let loadingDemo: bool = false
+    let switchDemo: bool = true
+    let modalOpen: bool = false
+    let modalOpenLarge: bool = false
+    let dialogInfoOpen: bool = false
+    let dialogSuccessOpen: bool = false
+    let dialogWarnOpen: bool = false
+    let dialogErrorOpen: bool = false
+    let drawerOpen: bool = false
+    let selectValue: string = "voa"
+
+    // ---- 数据 ----
+    let selectOptions: [{ value: string, label: string }] = [
+        { value: "voa", label: "VOA (Asgard)" },
+        { value: "next", label: "Next.js" },
+        { value: "nuxt", label: "Nuxt" },
+        { value: "sveltekit", label: "SvelteKit" },
+        { value: "remix", label: "Remix" }
+    ]
+
+    let tabItems: [{ key: string, label: string, icon: string, badge: string, disabled: bool }] = [
+        { key: "tab1", label: "概览" },
+        { key: "tab2", label: "通知", badge: "3" },
+        { key: "tab3", label: "设置", icon: "⚙" }
+    ]
+
+    let accordionItems: [{ key: string, title: string, open: bool }] = [
+        { key: "faq1", title: "什么是 VOA？", open: true },
+        { key: "faq2", title: "支持静态导出吗？", open: false },
+        { key: "faq3", title: "有哪些渲染模式？", open: false }
+    ]
+
+    let dropdownItems: [{ type: string, label: string, icon: string, shortcut: string, danger: bool }] = [
+        { type: "header", label: "操作" },
+        { label: "编辑", icon: "✏️", shortcut: "Ctrl+E" },
+        { label: "复制", icon: "📋", shortcut: "Ctrl+C" },
+        { type: "divider" },
+        { label: "删除", icon: "🗑️", danger: true, shortcut: "Del" }
+    ]
+
+    let listItems: [{ label: string, description: string, icon: string, badge: string }] = [
+        { label: "张三", description: "管理员", icon: "👤", badge: "Admin" },
+        { label: "李四", description: "编辑者", icon: "👤" },
+        { label: "王五", description: "只读", icon: "👤", badge: "Viewer" }
+    ]
+
+    let tableColumns: [{ key: string, title: string, sortable: bool, width: string }] = [
+        { key: "name", title: "名称", sortable: true, width: "200px" },
+        { key: "version", title: "版本", sortable: true, width: "100px" },
+        { key: "status", title: "状态", sortable: false, width: "100px" }
+    ]
+
+    let tableRows: [{ name: string, version: string, status: string }] = [
+        { name: "VOA Core", version: "0.2.0", status: "✅ 稳定" },
+        { name: "VOA Router", version: "0.1.0", status: "🚧 开发中" },
+        { name: "VOA Fetch", version: "0.1.0", status: "✅ 稳定" }
+    ]
+
+    let breadcrumbItems: [{ label: string, href: string }] = [
+        { label: "首页", href: "/" },
+        { label: "组件库", href: "/components" },
+        { label: "Button", href: "" }
+    ]
+
+    let formFields: [{ name: string, label: string, type: string, placeholder: string, required: bool, options: [{ value: string, label: string }] }] = [
+        { name: "username", label: "用户名", type: "text", placeholder: "请输入用户名", required: true },
+        { name: "email", label: "邮箱", type: "email", placeholder: "name@example.com", required: true },
+        { name: "role", label: "角色", type: "select", options: [
+            { value: "admin", label: "管理员" },
+            { value: "editor", label: "编辑者" },
+            { value: "viewer", label: "只读" }
+        ]},
+        { name: "bio", label: "简介", type: "textarea", placeholder: "介绍一下自己..." },
+        { name: "agree", label: "同意服务条款", type: "checkbox" }
+    ]
+
+    // ---- 方法 ----
+    micro simulateLoading() {
+        loadingDemo = true
+        setTimeout(() => { loadingDemo = false }, 1500)
+    }
+
+    micro handleFormSubmit(data: {}) {
+        console.log("表单数据：", data)
+        alert("表单提交成功！查看控制台输出。")
+    }
+</script>
+
+<style>
+.showcase-page {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    padding-bottom: 80px;
+}
+.showcase-section-title {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.showcase-section-desc {
+    margin: 0 0 16px;
+    font-size: 14px;
+    color: var(--voa-text-secondary);
+    line-height: 1.6;
+}
+.showcase-section-desc code {
+    padding: 1px 5px;
+    border-radius: 3px;
+    background: var(--voa-hover);
+    font-size: 13px;
+    color: var(--voa-accent);
+}
+.showcase-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+.showcase-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--voa-border);
+    margin: 12px 0;
+}
+.showcase-demo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.showcase-form-demo {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+}
+</style>

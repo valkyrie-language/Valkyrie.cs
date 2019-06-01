@@ -1,0 +1,8 @@
+legion {
+    name: "shared",
+    version: "0.1.0.0",
+    description: "共享类型库",
+    license: "MIT",
+    dependencies: {},
+    devDependencies: {}
+}

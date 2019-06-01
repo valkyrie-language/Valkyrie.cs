@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net11.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>Valkyrie.Highlight</RootNamespace>
+    <AssemblyName>Valkyrie.Highlight</AssemblyName>
+    <Version>0.1.0</Version>
+    <Authors>Valkyrie Team</Authors>
+    <Description>Valkyrie 语言语法高亮器</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="e:\RiderProjects\Oak.cs\projects\Oak.Valkyrie\Oak.Valkyrie.csproj" />
+  </ItemGroup>
+
+</Project>

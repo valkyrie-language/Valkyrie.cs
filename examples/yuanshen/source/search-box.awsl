@@ -1,0 +1,85 @@
+<widget>
+    <div class="ys-search-box">
+        <span class="ys-search-icon">🔍</span>
+        <input class="ys-search-input" type="text" placeholder="搜索文件、分支、提交..." on:input={onSearch} value={query} />
+        {#if query.length > 0}
+            <button class="ys-search-clear" on:click={clearSearch}>✕</button>
+        {/if}
+        <div class="ys-search-meta">
+            <span class="ys-search-scope">{scope}</span>
+        </div>
+    </div>
+</widget>
+
+<script>
+    let query: string = __voa_state("search_query")
+    let scope: string = "所有文件"
+
+    macro onSearch() { __voa_call("on_search", query) }
+    macro clearSearch() { __voa_call("clear_search") }
+</script>
+
+<style>
+.ys-search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--ys-border);
+    border-radius: var(--ys-r);
+    background: var(--ys-bg);
+    transition: border-color 0.15s;
+}
+
+.ys-search-box:focus-within {
+    border-color: var(--ys-accent);
+}
+
+.ys-search-icon {
+    font-size: 13px;
+    color: var(--ys-text3);
+    flex-shrink: 0;
+}
+
+.ys-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: var(--ys-text);
+    font-size: 13px;
+    outline: none;
+    min-width: 0;
+}
+
+.ys-search-input::placeholder {
+    color: var(--ys-text3);
+}
+
+.ys-search-clear {
+    background: none;
+    border: none;
+    color: var(--ys-text3);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: all 0.15s;
+}
+
+.ys-search-clear:hover {
+    color: var(--ys-text);
+    background: var(--ys-hover);
+}
+
+.ys-search-meta {
+    flex-shrink: 0;
+}
+
+.ys-search-scope {
+    font-size: 11px;
+    color: var(--ys-text3);
+    background: var(--ys-hover);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+</style>

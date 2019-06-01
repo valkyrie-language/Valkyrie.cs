@@ -1,0 +1,86 @@
+<widget>
+    <div class="ys-tabs">
+        {#each tabs as tab}
+            <button class="ys-tab {tab.active ? 'active' : ''}" on:click={switchTab(tab.id)}>
+                <span class="ys-tab-icon">{tab.icon}</span>
+                <span class="ys-tab-label">{tab.label}</span>
+                {#if tab.count > 0}
+                    <span class="ys-tab-count">{tab.count}</span>
+                {/if}
+            </button>
+        {/each}
+    </div>
+</widget>
+
+<script>
+    let tabs: Array = [
+        { id: "code", icon: "📄", label: "代码", count: 0, active: true },
+        { id: "issues", icon: "🐛", label: "问题", count: 12, active: false },
+        { id: "prs", icon: "🔀", label: "合并请求", count: 3, active: false },
+        { id: "actions", icon: "⚡", label: "流水线", count: 0, active: false },
+        { id: "settings", icon: "⚙", label: "设置", count: 0, active: false },
+    ]
+
+    macro switchTab(id: string) { __voa_call("switch_tab", id) }
+</script>
+
+<style>
+.ys-tabs {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--ys-border);
+    background: var(--ys-card);
+    overflow-x: auto;
+}
+
+.ys-tab {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border: none;
+    background: transparent;
+    color: var(--ys-text2);
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.15s;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+}
+
+.ys-tab:hover {
+    color: var(--ys-text);
+    background: var(--ys-hover);
+}
+
+.ys-tab.active {
+    color: var(--ys-text);
+    border-bottom-color: var(--ys-accent);
+    font-weight: 500;
+}
+
+.ys-tab-icon {
+    font-size: 14px;
+}
+
+.ys-tab-label {
+    font-size: 13px;
+}
+
+.ys-tab-count {
+    font-size: 11px;
+    color: var(--ys-text);
+    background: var(--ys-hover);
+    padding: 1px 7px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+}
+
+.ys-tab.active .ys-tab-count {
+    background: rgba(88, 166, 255, 0.15);
+    color: var(--ys-accent);
+}
+</style>

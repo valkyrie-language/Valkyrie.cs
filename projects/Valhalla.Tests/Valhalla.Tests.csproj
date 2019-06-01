@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net11.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>Valhalla.Tests</RootNamespace>
+        <LangVersion>preview</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+        <PackageReference Include="xunit" Version="2.9.*" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.8.*" />
+        <PackageReference Include="Moq" Version="4.20.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NSec.Cryptography" Version="26.*" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Valhalla\Valhalla.csproj" />
+        <ProjectReference Include="..\Valhalla.Config\Valhalla.Config.csproj" />
+        <ProjectReference Include="..\Valhalla.Client\Valhalla.Client.csproj" />
+        <ProjectReference Include="..\Valhalla.Server\Valhalla.Server.csproj" />
+    </ItemGroup>
+
+</Project>

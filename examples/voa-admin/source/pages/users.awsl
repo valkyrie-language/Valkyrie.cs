@@ -1,0 +1,80 @@
+<widget>
+    <div class="users-page">
+        <div class="users-toolbar">
+            <h2 style="margin:0">用户列表</h2>
+            <Button variant="primary" label="+ 新增用户" on:click={() => { showCreateModal = true }} />
+        </div>
+
+        <DataTable
+            columns={tableColumns}
+            rows={users}
+            striped={true}
+            bordered={true}
+        />
+
+        <Modal
+            title={editingUser ? "编辑用户" : "新增用户"}
+            open={showCreateModal}
+            on:close={() => { showCreateModal = false; editingUser = null }}
+        >
+            <Form
+                fields={userFormFields}
+                submitText={editingUser ? "保存" : "创建"}
+                on:submit={handleFormSubmit}
+            />
+            <slot name="footer">
+                <Button variant="ghost" label="取消" on:click={() => { showCreateModal = false; editingUser = null }} />
+            </slot>
+        </Modal>
+    </div>
+</widget>
+
+<script>
+    let users = get_all_users()
+    let showCreateModal: bool = false
+    let editingUser: map = null
+
+    let tableColumns = [
+        { key: "id", title: "ID", sortable: true, width: "60px" },
+        { key: "username", title: "用户名", sortable: true, width: "120px" },
+        { key: "email", title: "邮箱", sortable: true, width: "200px" },
+        { key: "role", title: "角色", sortable: true, width: "100px" },
+        { key: "status", title: "状态", sortable: true, width: "80px" },
+        { key: "created_at", title: "创建时间", sortable: true, width: "120px" }
+    ]
+
+    let userFormFields = [
+        { name: "username", label: "用户名", type: "text", placeholder: "请输入用户名", required: true },
+        { name: "email", label: "邮箱", type: "email", placeholder: "user@voa.dev", required: true },
+        { name: "role", label: "角色", type: "select", options: [
+            { value: "admin", label: "管理员" },
+            { value: "editor", label: "编辑者" },
+            { value: "viewer", label: "只读" }
+        ]},
+        { name: "status", label: "状态", type: "select", options: [
+            { value: "active", label: "启用" },
+            { value: "disabled", label: "禁用" }
+        ]}
+    ]
+
+    micro handleFormSubmit(data: map) {
+        if editingUser {
+            update_user(editingUser.id, data)
+        } else {
+            create_user(data)
+        }
+        users = get_all_users()
+        showCreateModal = false
+        editingUser = null
+    }
+</script>
+
+<style>
+.users-page { }
+.users-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+</style>
